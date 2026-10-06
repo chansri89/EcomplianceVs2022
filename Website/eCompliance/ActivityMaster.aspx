@@ -1,7 +1,413 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage3.master" AutoEventWireup="true" CodeFile="ActivityMaster.aspx.cs" Inherits="ActivityMaster" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-<div>
+<div class="activity-page">
+    <style type="text/css">
+        .activity-page {
+            --activity-ink: #1f2937;
+            --activity-muted: #64748b;
+            --activity-border: #dbe3ec;
+            --activity-surface: #ffffff;
+            --activity-background: #f4f7fb;
+            --activity-accent: #175cd3;
+            box-sizing: border-box;
+            width: 100%;
+            padding: 12px 16px 16px;
+            color: var(--activity-ink);
+            font-family: "Segoe UI", Arial, sans-serif;
+            font-size: 14px;
+        }
+
+        .activity-page *,
+        .activity-page *:before,
+        .activity-page *:after {
+            box-sizing: border-box;
+        }
+
+        .activity-heading {
+            margin: 0 0 12px;
+        }
+
+        .activity-heading h1 {
+            margin: 0;
+            color: #172b4d;
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.25;
+        }
+
+        .activity-heading p {
+            margin: 4px 0 0;
+            color: var(--activity-muted);
+            font-size: 13px;
+        }
+
+        .activity-page .activity-spacer {
+            display: none;
+        }
+
+        .activity-page .activity-toolbar {
+            width: 100% !important;
+            height: auto !important;
+            margin: 0 0 12px;
+            padding: 12px 16px;
+            border: 1px solid var(--activity-border);
+            border-radius: 10px;
+            background: var(--activity-surface);
+            box-shadow: 0 2px 8px rgba(15, 23, 42, .04);
+        }
+
+        .activity-toolbar-layout {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .activity-toolbar-layout td {
+            padding: 2px 8px 2px 0;
+            vertical-align: middle;
+            white-space: nowrap;
+        }
+
+        .activity-toolbar-layout td:first-child {
+            color: var(--activity-muted);
+            font-weight: 600;
+        }
+
+        .activity-page select,
+        .activity-page input[type="text"],
+        .activity-page input[type="file"] {
+            max-width: 100%;
+            min-height: 36px;
+            padding: 7px 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            background-color: #fff;
+            color: var(--activity-ink);
+            font: inherit;
+            font-size: 14px !important;
+        }
+
+        .activity-page span {
+            font-family: inherit;
+            font-size: inherit !important;
+        }
+
+        .activity-page select:focus,
+        .activity-page input[type="text"]:focus,
+        .activity-page input[type="file"]:focus {
+            border-color: var(--activity-accent);
+            outline: 3px solid rgba(23, 92, 211, .14);
+        }
+
+        .activity-page input[type="submit"],
+        .activity-page button,
+        .activity-page .activity-grid a {
+            min-height: 36px;
+            padding: 7px 14px;
+            border: 1px solid var(--activity-accent);
+            border-radius: 6px;
+            background: var(--activity-accent);
+            color: #fff;
+            font: inherit;
+            font-size: 14px !important;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .activity-page input[type="submit"]:hover,
+        .activity-page button:hover,
+        .activity-page .activity-grid a:hover {
+            background: #1249a8;
+            border-color: #1249a8;
+        }
+
+        .activity-page .activity-list {
+            width: 100% !important;
+            height: auto !important;
+            overflow: hidden;
+            border: 1px solid var(--activity-border);
+            border-radius: 10px;
+            background: var(--activity-surface);
+            box-shadow: 0 2px 8px rgba(15, 23, 42, .04);
+        }
+
+        .activity-grid-scroll {
+            width: 100%;
+            height: calc(100vh - 330px) !important;
+            max-height: calc(100vh - 330px);
+            min-height: 220px;
+            overflow: auto;
+            border-radius: 10px;
+        }
+
+        .activity-page .activity-grid {
+            width: max-content;
+            min-width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            color: var(--activity-ink);
+            font: inherit;
+        }
+
+        .activity-page .activity-grid th {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            padding: 10px 12px;
+            border-bottom: 1px solid #dbe3ec;
+            background: #edf3fb;
+            color: #334155;
+            font-size: 12px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .activity-page .activity-grid td {
+            padding: 8px 12px;
+            border-bottom: 1px solid #edf1f6;
+            background: #fff;
+            font-size: 13px;
+        }
+
+        .activity-page .activity-grid tr:nth-child(even) td {
+            background: #f8fafc;
+        }
+
+        .activity-page .activity-grid a {
+            display: inline-block;
+            min-height: 30px;
+            padding: 4px 10px;
+            font-size: 12px;
+        }
+
+        .activity-page .activity-editor {
+            width: 100% !important;
+            height: auto !important;
+            padding: 14px;
+            border: 1px solid var(--activity-border);
+            border-radius: 10px;
+            background: var(--activity-background);
+        }
+
+        .activity-page .activity-meta,
+        .activity-page .activity-details,
+        .activity-page .activity-frequency,
+        .activity-page .activity-groups {
+            width: 100% !important;
+            height: auto !important;
+            min-width: 0;
+            padding: 12px;
+            border: 1px solid var(--activity-border);
+            border-radius: 8px;
+            background: var(--activity-surface);
+        }
+
+        .activity-page .activity-details:before {
+            display: block;
+            margin: 0 0 7px;
+            color: var(--activity-ink);
+            content: "Activity details";
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .activity-page .activity-groups:before {
+            display: block;
+            margin: 0 0 7px;
+            color: var(--activity-ink);
+            content: "Responsible groups";
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .activity-page .activity-meta {
+            overflow-x: auto;
+        }
+
+        .activity-meta-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .activity-page .activity-details {
+            margin-top: 10px;
+        }
+
+        .activity-fields {
+            width: 100% !important;
+            border-collapse: separate;
+            border-spacing: 8px 5px;
+        }
+
+        .activity-fields tr {
+            display: grid;
+            grid-template-columns: minmax(100px, .8fr) minmax(140px, 1.35fr) minmax(100px, .8fr) minmax(140px, 1.35fr) minmax(100px, .8fr) minmax(140px, 1.35fr);
+            align-items: center;
+        }
+
+        .activity-fields td {
+            width: auto !important;
+            min-width: 0;
+            padding: 2px;
+            vertical-align: middle;
+        }
+
+        .activity-fields td:nth-child(odd) {
+            color: #475569;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .activity-fields input[type="text"],
+        .activity-fields select,
+        .activity-fields input[type="file"] {
+            width: 100% !important;
+        }
+
+        .activity-form-actions,
+        .activity-continue-actions {
+            width: 100%;
+            margin-top: 10px;
+            border-collapse: collapse;
+        }
+
+        .activity-form-actions tr,
+        .activity-continue-actions tr {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .activity-form-actions td,
+        .activity-continue-actions td {
+            width: auto !important;
+            padding: 0;
+        }
+
+        .activity-form-actions td:not(:nth-child(3)),
+        .activity-continue-actions td:not(:nth-child(3)) {
+            display: none;
+        }
+
+        .activity-assignment-layout {
+            display: block;
+            width: 100% !important;
+            height: auto !important;
+            margin-top: 10px;
+            border-collapse: collapse;
+        }
+
+        .activity-assignment-layout tr {
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(280px, 1fr);
+            gap: 10px;
+        }
+
+        .activity-assignment-layout td {
+            display: block;
+            min-width: 0;
+            padding: 0;
+            vertical-align: top;
+        }
+
+        .activity-frequency .activity-frequency-title {
+            display: block;
+            width: 100% !important;
+            height: auto !important;
+            margin: 0 0 8px;
+            padding: 0;
+            border: 0;
+            background: transparent !important;
+            color: var(--activity-ink) !important;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .activity-frequency-fields {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 6px;
+        }
+
+        .activity-frequency-fields tr {
+            display: grid;
+            grid-template-columns: minmax(72px, .8fr) minmax(90px, 1.15fr) minmax(72px, .8fr) minmax(90px, 1.15fr) minmax(60px, .7fr) minmax(80px, 1fr);
+            align-items: center;
+        }
+
+        .activity-frequency-fields td {
+            min-width: 0;
+            padding: 2px;
+            color: #475569;
+            font-size: 12px;
+        }
+
+        .activity-frequency-fields select,
+        .activity-frequency-fields input[type="text"] {
+            width: 100% !important;
+        }
+
+        .activity-group-scroll {
+            max-height: 180px;
+            overflow: auto;
+        }
+
+        .activity-groups .activity-grid {
+            width: 100% !important;
+            min-width: 0;
+        }
+
+        @media (max-width: 900px) {
+            .activity-assignment-layout tr {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .activity-grid-scroll {
+                height: calc(100vh - 350px) !important;
+                max-height: calc(100vh - 350px);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .activity-page {
+                padding: 8px;
+            }
+
+            .activity-toolbar-layout,
+            .activity-toolbar-layout tbody,
+            .activity-toolbar-layout tr {
+                display: block;
+                width: 100%;
+            }
+
+            .activity-toolbar-layout tr {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 6px;
+            }
+
+            .activity-toolbar-layout td {
+                display: inline-block;
+                width: auto !important;
+                padding: 2px 0;
+            }
+
+            .activity-fields tr {
+                grid-template-columns: minmax(105px, .8fr) minmax(0, 1.4fr);
+            }
+
+            .activity-frequency-fields tr {
+                grid-template-columns: repeat(6, minmax(72px, 1fr));
+            }
+
+            .activity-frequency {
+                overflow-x: auto;
+            }
+        }
+    </style>
     <script type="text/javascript" language="javascript">
      function GetPath(Path)
       {
@@ -16,9 +422,13 @@
       //document.getElementById("txtDocumentName").value = Path.value;
 //      }
 </script>
-<asp:Panel ID="Panel1" runat="server" Height="16px" Width="870px"> </asp:Panel>
-       <asp:Panel ID="pnlActivityLoad" runat="server" Height="26px" Width="722px">
-            <table style="width: 100%; height: 23px;">
+<header class="activity-heading">
+    <h1>Activity master</h1>
+    <p>Manage activity details, compliance tasks, and responsible groups.</p>
+</header>
+<asp:Panel ID="Panel1" runat="server" CssClass="activity-spacer" Height="16px" Width="870px"> </asp:Panel>
+       <asp:Panel ID="pnlActivityLoad" runat="server" CssClass="activity-toolbar" Height="26px" Width="722px">
+            <table class="activity-toolbar-layout" style="width: 100%; height: 23px;">
                 <tr>
                     <td style="width: 41px; ">
                         <asp:Label ID="lblACtivityLoad" runat="server" Text="Act" Font-Names="arial" 
@@ -67,9 +477,9 @@
 
         </asp:Panel>
         <br />
-    <asp:panel ID="Pnlgv" runat="server" Height="271px" Width="1351px">
-        <div style="overflow:auto; height:258px; width:1328px">
-    <asp:GridView ID="GrdActivityMaster" runat="server" CellPadding="3" 
+    <asp:panel ID="Pnlgv" runat="server" CssClass="activity-list" Height="271px" Width="1351px">
+        <div class="activity-grid-scroll" style="overflow:auto; height:258px; width:1328px">
+    <asp:GridView ID="GrdActivityMaster" runat="server" CssClass="activity-grid" CellPadding="3"
             Font-Size="X-Small" Width="1301px" Font-Names="arial" AutoGenerateColumns="False" 
             Height="16px" GridLines="Vertical" BackColor="White" BorderColor="#999999" 
                 BorderStyle="None" BorderWidth="1px"
@@ -367,12 +777,12 @@
                     </EditItemTemplate>--%><%--<EditItemTemplate>
                         <asp:TextBox ID="txtActivityDocumentId" runat="server" Text='<%# Bind("ActivityDocumentId") %>' ReadOnly="true" Font-Names="arial" Font-Size="X-Small" ></asp:TextBox>
                     </EditItemTemplate>--%>
-    <asp:panel ID="pnlAdd" runat="server" Width="1192px" 
+    <asp:panel ID="pnlAdd" runat="server" CssClass="activity-editor" Width="1192px"
             Height="654px">
-        <asp:panel ID="pnlACt" runat="server" Enabled="false" BorderWidth="1px" 
+        <asp:panel ID="pnlACt" runat="server" CssClass="activity-meta" Enabled="false" BorderWidth="1px"
             Width="1015px" Visible="False">
    
-        <table style="width: 97%; height: 3px;">
+        <table class="activity-meta-table" style="width: 97%; height: 3px;">
             <tr>
          
                     <td style="width: 96px; text-align: left;">
@@ -449,9 +859,9 @@
         </table>
          </asp:panel>
         <br />
-        <asp:Panel ID="pnlNew" runat="server" Width="1018px" Height="118px" >
+        <asp:Panel ID="pnlNew" runat="server" CssClass="activity-details" Width="1018px" Height="118px" >
        
-        <table style="width: 97%; margin-right: 0px;">
+        <table class="activity-fields" style="width: 97%; margin-right: 0px;">
         <tr>   
            
             <td class="style21" style="width: 156px">
@@ -582,7 +992,7 @@
                 </tr>
                 </table>
                 </asp:Panel>
-                <table id="tblContinue" runat="server">
+                <table id="tblContinue" runat="server" class="activity-continue-actions">
                 <tr>
                         <td style="text-align: right; width: 166px;">
                             &nbsp;</td>
@@ -603,23 +1013,23 @@
                             &nbsp;</td>
                     </tr>
                 </table>
-                <table style="height: 190px; width: 1121px">
+                <table class="activity-assignment-layout" style="height: 190px; width: 1121px">
                 <tr>
                 <td>
                
-    <asp:Panel ID="Pnlfrequency" runat="server" Visible="false" Height="197px" 
+    <asp:Panel ID="Pnlfrequency" runat="server" CssClass="activity-frequency" Visible="false" Height="197px"
             Width="654px">
     <table>
         <tr>
         <td>
-        <asp:TextBox ID="txtFrequencyTitle" runat="server" 
+        <asp:TextBox ID="txtFrequencyTitle" runat="server" CssClass="activity-frequency-title"
                 Text="Assign Frequency and Responsible Group for Activity" 
                 Font-Size="X-Small" BackColor="#000084" 
                 Font-Bold="True" ForeColor="White" Width="641px"></asp:TextBox>
         </td>
         </tr>
         </table>
-    <table>
+    <table class="activity-frequency-fields">
     <tr>
     <td style="width: 78px"><asp:Label ID="lblFrequency" runat="server" Text="Frequency" Font-Names="arial"  Width="60px" Font-Size="X-Small"></asp:Label></td>
     <td class="style21" style="width: 114px"><asp:DropDownList ID="ddlFrequency" runat="server" 
@@ -672,10 +1082,10 @@
     </td>
     <td>
 
-    <asp:panel ID="PnlAssignResponsibleGroup" runat="server" Height="193px" 
+    <asp:panel ID="PnlAssignResponsibleGroup" runat="server" CssClass="activity-groups" Height="193px"
             Width="458px" Visible="false">
-        <div style="overflow:auto; height:174px; width:434px">
-    <asp:GridView ID="grdAssignResponsibleGroup" runat="server" CellPadding="3" 
+        <div class="activity-group-scroll" style="overflow:auto; height:174px; width:434px">
+    <asp:GridView ID="grdAssignResponsibleGroup" runat="server" CssClass="activity-grid" CellPadding="3"
             Font-Size="X-Small" Width="405px" Font-Names="arial" AutoGenerateColumns="False" 
             Height="16px" GridLines="Vertical" BackColor="White" BorderColor="#999999" 
                 BorderStyle="None" BorderWidth="1px"
@@ -737,7 +1147,7 @@
     </div>
     </asp:panel>
      </td></tr></table>
-    <table runat="server" id="tblSave" visible="false"> <tr>
+    <table runat="server" id="tblSave" class="activity-form-actions" visible="false"> <tr>
                         <td style="text-align: right; width: 166px;">
                             &nbsp;</td>
                         <td style="width: 156px">
@@ -767,4 +1177,3 @@
     <%-- <asp:Label ID="lblActName" runat="server" Text='<%# Eval("ActName") %>'></asp:Label>--%>
     </div>
 </asp:Content>
-
