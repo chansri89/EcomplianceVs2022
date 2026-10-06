@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ErrorCompanyCode" xml:space="preserve">
+    <value>Enter Company Code</value>
+  </data>
+  <data name="ErrorCompanyFlag" xml:space="preserve">
+    <value>Enter Company Type</value>
+  </data>
+  <data name="ErrorCompanyName" xml:space="preserve">
+    <value>Enter Company Name</value>
+  </data>
+  <data name="ErrorCompanyShortName" xml:space="preserve">
+    <value>Enter Company Shortname</value>
+  </data>
+  <data name="ErrParentCompany" xml:space="preserve">
+    <value>Select Parent Company</value>
+  </data>
+  <data name="SuccessFullySaved" xml:space="preserve">
+    <value>SuccessFully Saved</value>
+  </data>
+  <data name="ErrStateName" xml:space="preserve">
+    <value>Select Atleast One State</value>
+  </data>
+  <data name="EmployeeUpdatedSuccessfully" xml:space="preserve">
+    <value>Employee Updated Successfully</value>
+  </data>
+  <data name="ErrActivityDesignation" xml:space="preserve">
+    <value>Enter Activity Designation</value>
+  </data>
+  <data name="ErrEmailId" xml:space="preserve">
+    <value>Enter EmailId</value>
+  </data>
+  <data name="ErrEmployeeCode" xml:space="preserve">
+    <value>Enter Employee Code</value>
+  </data>
+  <data name="ErrEmployeeName" xml:space="preserve">
+    <value>Enter Employee Name</value>
+  </data>
+  <data name="ErrEmployeePassword" xml:space="preserve">
+    <value>Enter Password</value>
+  </data>
+  <data name="CompanyDeletedSuccessfully" xml:space="preserve">
+    <value>Company Deleted Successfully</value>
+  </data>
+  <data name="CompanyUpdatedSuccessfully" xml:space="preserve">
+    <value>Company Updated Successfully</value>
+  </data>
+  <data name="EmployeeDeletedSuccessfully" xml:space="preserve">
+    <value>Employee Deleted Successfully</value>
+  </data>
+  <data name="CategoryDeletedSuccessfully" xml:space="preserve">
+    <value>Category Deleted Successfully</value>
+  </data>
+  <data name="CategoryUpdatedSuccessfully" xml:space="preserve">
+    <value>Category Updated Successfully</value>
+  </data>
+  <data name="ErrCategoryName" xml:space="preserve">
+    <value>Enter Category Name</value>
+  </data>
+  <data name="DeptDeletedSuccessfully" xml:space="preserve">
+    <value>Department Deleted Successfully</value>
+  </data>
+  <data name="DeptUpdatedSuccessfully" xml:space="preserve">
+    <value>Department Updated Successfully</value>
+  </data>
+  <data name="ErrDeptName" xml:space="preserve">
+    <value>Enter Department Name</value>
+  </data>
+  <data name="ErrDeptShortName" xml:space="preserve">
+    <value>Enter Department Short Name</value>
+  </data>
+  <data name="DocumentTypeDeletedSuccessfully" xml:space="preserve">
+    <value>Document Type Deleted Successfully</value>
+  </data>
+  <data name="DocumentTypeUpdatedSuccessfully" xml:space="preserve">
+    <value>Document Type Updated Successfully</value>
+  </data>
+  <data name="ErrDocumentName" xml:space="preserve">
+    <value>Enter Document Name</value>
+  </data>
+  <data name="ErrDocumentTypeShortName" xml:space="preserve">
+    <value>Enter Document Type Short Name</value>
+  </data>
+  <data name="ErrFrequenceDays" xml:space="preserve">
+    <value>Enter Frequence Days</value>
+  </data>
+  <data name="ErrFrequenceName" xml:space="preserve">
+    <value>Enter Frequence Name</value>
+  </data>
+  <data name="ErrFrequenceShortName" xml:space="preserve">
+    <value>Enter Frequence Short Name</value>
+  </data>
+  <data name="ErrRemarks" xml:space="preserve">
+    <value>Enter Remarks</value>
+  </data>
+  <data name="ErrSeverityName" xml:space="preserve">
+    <value>Enter Severity Name</value>
+  </data>
+  <data name="ErrSeverityShortName" xml:space="preserve">
+    <value>Enter Severity Short Name</value>
+  </data>
+  <data name="FrequenceDeletedSuccessfully" xml:space="preserve">
+    <value>Frequence Deleted Successfully</value>
+  </data>
+  <data name="FrequenceUpdatedSuccessfully" xml:space="preserve">
+    <value>Frequence Updated Successfully</value>
+  </data>
+  <data name="SeverityDeletedSuccessfully" xml:space="preserve">
+    <value>Severity Deleted Successfully </value>
+  </data>
+  <data name="SeverityUpdatedSuccessfully" xml:space="preserve">
+    <value>Severity Updated Successfully</value>
+  </data>
+  <data name="ActNameDeletedSuccessfully" xml:space="preserve">
+    <value>ActName Deleted Successfully</value>
+  </data>
+  <data name="ActNameUpdatedSuccessfully" xml:space="preserve">
+    <value>ActName Updated Successfully</value>
+  </data>
+  <data name="ErrActName" xml:space="preserve">
+    <value>Enter or Select ActName</value>
+  </data>
+  <data name="ErrActRule" xml:space="preserve">
+    <value>Enter ActRule</value>
+  </data>
+  <data name="ErrChapter" xml:space="preserve">
+    <value>Enter Chapter</value>
+  </data>
+  <data name="ErrDescription" xml:space="preserve">
+    <value>Enter Description</value>
+  </data>
+  <data name="ErrHead" xml:space="preserve">
+    <value>Enter Head</value>
+  </data>
+  <data name="ErrSection" xml:space="preserve">
+    <value>Enter Section</value>
+  </data>
+  <data name="ErrActNameDual" xml:space="preserve">
+    <value>Select Either Existing Act or Enter New Act</value>
+  </data>
+  <data name="ActivityDeletedSuccessfully" xml:space="preserve">
+    <value>Activity Deleted Successfully</value>
+  </data>
+  <data name="ActivityUpdatedSuccessfully" xml:space="preserve">
+    <value>Activity Updated Successfully</value>
+  </data>
+  <data name="ErrActivityName" xml:space="preserve">
+    <value>Enter Activity Name</value>
+  </data>
+  <data name="ErrActNameselect" xml:space="preserve">
+    <value>Select Act Name</value>
+  </data>
+  <data name="ErrCategoryNameselect" xml:space="preserve">
+    <value>Select Category Name</value>
+  </data>
+  <data name="ErrDepartmentNameselect" xml:space="preserve">
+    <value>Select Department Name </value>
+  </data>
+  <data name="ErrNonCompliance" xml:space="preserve">
+    <value>Enter Non Compliance Y/N</value>
+  </data>
+  <data name="ErrRegularActivity" xml:space="preserve">
+    <value>Select Regular Activity</value>
+  </data>
+  <data name="ErrSeverityNameSelect" xml:space="preserve">
+    <value>Select Severity Name</value>
+  </data>
+  <data name="ErrStateSpecific" xml:space="preserve">
+    <value>Select State Specific</value>
+  </data>
+  <data name="ErrGridActName" xml:space="preserve">
+    <value>Select Any Act Name from Grid</value>
+  </data>
+  <data name="RoleNotSaved" xml:space="preserve">
+    <value>Roles Not Saved</value>
+  </data>
+  <data name="SelectRole" xml:space="preserve">
+    <value>Select Atleast one Role</value>
+  </data>
+  <data name="ErrProgramRole" xml:space="preserve">
+    <value>Programs Name Updated Successfully</value>
+  </data>
+  <data name="ErrCompanyActname" xml:space="preserve">
+    <value>Company Name and Act Name required</value>
+  </data>
+  <data name="AccessPermissionRestricted" xml:space="preserve">
+    <value>Access Permission is restricted for the User</value>
+  </data>
+  <data name="CreatePermissionRestricted" xml:space="preserve">
+    <value>Create Permission is restricted for the User</value>
+  </data>
+  <data name="DeletePermissionRestricted" xml:space="preserve">
+    <value>Delete Permission is restricted for the User</value>
+  </data>
+  <data name="EditPermissionRestricted" xml:space="preserve">
+    <value>Edit Permission is restricted for the User</value>
+  </data>
+  <data name="PrintPermissionRestricted" xml:space="preserve">
+    <value>Print Permission is restricted for the User</value>
+  </data>
+  <data name="ActivityAssigned" xml:space="preserve">
+    <value>"Activity Assigned"</value>
+  </data>
+  <data name="ErrEmpnotAssignedforcmp" xml:space="preserve">
+    <value>Employee not Created for Company</value>
+  </data>
+  <data name="ErrorGridSelect" xml:space="preserve">
+    <value>As Above "Activity Assigned"</value>
+  </data>
+  <data name="ErrGridSelect" xml:space="preserve">
+    <value>"Activity not Assigned" Click Edit to Update the Grid</value>
+  </data>
+  <data name="AccessPermissionSuccess" xml:space="preserve">
+    <value>Access permission made inactive Successfully</value>
+  </data>
+  <data name="ErrEditMode" xml:space="preserve">
+    <value>You are in edit mode, use edit control in the grid.</value>
+  </data>
+  <data name="ErrRoles" xml:space="preserve">
+    <value>There is no existing Roles. Please add Roles first.</value>
+  </data>
+  <data name="ErrUserName" xml:space="preserve">
+    <value>Enter User Name</value>
+  </data>
+  <data name="Errorstatename" xml:space="preserve">
+    <value>Enter State Name</value>
+  </data>
+  <data name="ErrStateShortName" xml:space="preserve">
+    <value>Enter State Short Name</value>
+  </data>
+  <data name="StateUpdatedSuccessfully" xml:space="preserve">
+    <value>Updated Successfully</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Updated Successfully</value>
+  </data>
+  <data name="ErrTaskName" xml:space="preserve">
+    <value>Enter the TaskName</value>
+  </data>
+  <data name="ErrClanderSelect" xml:space="preserve">
+    <value>Completed date should be Lessthan or Equal to Current Date</value>
+  </data>
+  <data name="ErrActivityNameselect" xml:space="preserve">
+    <value>Select Activity Name</value>
+  </data>
+  <data name="ErrCalander" xml:space="preserve">
+    <value>Select Date From Calander</value>
+  </data>
+  <data name="ErrDocumentTypeName" xml:space="preserve">
+    <value>Enter Document Type Name</value>
+  </data>
+  <data name="ErrLoccation" xml:space="preserve">
+    <value>Select Location</value>
+  </data>
+  <data name="ErrSelectDocumentType" xml:space="preserve">
+    <value>Select Document Type</value>
+  </data>
+  <data name="ErrState" xml:space="preserve">
+    <value>Select State</value>
+  </data>
+  <data name="ErrActionActSelect" xml:space="preserve">
+    <value>Select Act Name</value>
+  </data>
+  <data name="ActionDocumentMsg" xml:space="preserve">
+    <value>Please Create the ACtion For Activity</value>
+  </data>
+  <data name="ErrDocument" xml:space="preserve">
+    <value>Document Name Not Yet Created</value>
+  </data>
+  <data name="ErrLocationName" xml:space="preserve">
+    <value>Select Location Name</value>
+  </data>
+  <data name="ErrCompanyType" xml:space="preserve">
+    <value>Select Company Type</value>
+  </data>
+  <data name="ErrNoDataforAct" xml:space="preserve">
+    <value>No Datas for the Act Name</value>
+  </data>
+  <data name="ErrForgotPwd" xml:space="preserve">
+    <value>Enter Valid User Name</value>
+  </data>
+  <data name="ErrAssignAllEdit" xml:space="preserve">
+    <value>Select proper company name and Actname for selecting</value>
+  </data>
+  <data name="ErrAssignCompanyAllEdit" xml:space="preserve">
+    <value>Select proper company name and Actname for editing</value>
+  </data>
+  <data name="ErrApprovedBy" xml:space="preserve">
+    <value>Enter Approved By</value>
+  </data>
+  <data name="ErrCorrectiveAction" xml:space="preserve">
+    <value>Enter Corrective Action</value>
+  </data>
+  <data name="ErrPreventiveAction" xml:space="preserve">
+    <value>Enter Preventive Action</value>
+  </data>
+  <data name="ErrRootCause" xml:space="preserve">
+    <value>Enter Root Cause</value>
+  </data>
+  <data name="ErrPositiveNumbers" xml:space="preserve">
+    <value>Enter only Positive Number</value>
+  </data>
+  <data name="ErrEDC" xml:space="preserve">
+    <value>Enter Expected Date Compition</value>
+  </data>
+  <data name="ErrReceiptDate" xml:space="preserve">
+    <value>Select Receipt Date</value>
+  </data>
+  <data name="MsgForGrdnotLoad" xml:space="preserve">
+    <value>Data not available for this Master.Please Add Data for the Master</value>
+  </data>
+  <data name="AddActMsg" xml:space="preserve">
+    <value>Data not available for this Master.Please Create Act for the Master</value>
+  </data>
+  <data name="ErrClassificationAct" xml:space="preserve">
+    <value>Select Classification Act</value>
+  </data>
+  <data name="ErrDept" xml:space="preserve">
+    <value>Select Department Name</value>
+  </data>
+  <data name="ErrReportingOfficer" xml:space="preserve">
+    <value>Select Reporting Officer</value>
+  </data>
+  <data name="ErrResponsablePerson" xml:space="preserve">
+    <value>Select Responsable Person</value>
+  </data>
+  <data name="ErrReviewingOfficer" xml:space="preserve">
+    <value>Select Reviewing Officer</value>
+  </data>
+  <data name="ErrCompanyHead" xml:space="preserve">
+    <value>Select Company  Head</value>
+  </data>
+  <data name="ErrFrqRemarks" xml:space="preserve">
+    <value>Frequency is "As and When " you must Enter Remarks</value>
+  </data>
+  <data name="ErrCategoryfullName" xml:space="preserve">
+    <value>Enter Category Full Name</value>
+  </data>
+  <data name="ErrLocationinState" xml:space="preserve">
+    <value>Enter Locationin State</value>
+  </data>
+  <data name="ErrResponsibleGrpName" xml:space="preserve">
+    <value>Enter Responsible Group Name</value>
+  </data>
+  <data name="ErrLocationTypeName" xml:space="preserve">
+    <value>Enter Location Type Name</value>
+  </data>
+  <data name="ErrLocationTypeshName" xml:space="preserve">
+    <value>Enter Location Type short Name</value>
+  </data>
+  <data name="ErrGrdSelect" xml:space="preserve">
+    <value>No Matching data avaiable for this Activity Name</value>
+  </data>
+  <data name="DBsize" xml:space="preserve">
+    <value>Inform Administrator has Database size crossed 2.5 GB.</value>
+  </data>
+</root>

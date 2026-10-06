@@ -1,0 +1,252 @@
+--changes 230207
+1. When There are more than one coordinator in a copany duplicate data is seen in the summary. Ms. Kavviya Mail 230206
+  *8 Altered the mailing class to remove the duplicate if companyname is same
+
+Changes 190227
+1. Added tblMaildetailsCreated   To store Maildata being created continously
+2. Sps  MailDetailSelectSp,MailDetailForAnuallySelectSp --Altered to insert tblMailDetail
+3. Coding Finally brought at the end to close Connections and clear cmd in database
+
+
+----230217 changes
+<add key="RedAlertDay" value="1"/> in web config -- enable red color only when due date is reached to normal users 
+in Dashboard
+	**department in dashboard for others companyadmin -- display was blanl
+	**employee master and category inner join deactivate -- unnecessary IO activity
+	** dasboard sent back program
+
+
+---Changes in 
+------------------
+Ensure Web Config parameter are proper
+1.   <add key="WebServer" value="AB"/>  to be Y on web Server
+	 <add key="AutoActUpDate" value="N"/> Set to Y if Auto update for ACts from webserver is sought
+    <add key="IsDev" value="y"/>
+    <add key="ClGud" value="TAFECompliance"/>
+    <add key="Bhadram" value="padh1"/> -- to be changed after first attempt
+----------
+USE [WebECompliance]
+GO
+/****** Object:  Table [dbo].[tblCompanyLinkedToWebServer]    Script Date: 04/12/2016 12:32:25 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblCompanyLinkedToWebServer](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CompanyName] [varchar](64) NOT NULL,
+	[ClientID] [varchar](256) NOT NULL,
+	[MailTo] [varchar](128) NOT NULL,
+	[MailCC] [varchar](128) NULL,
+	[IsActive] [bit] NOT NULL CONSTRAINT [DF_tblCompanyLinkedToWebServer_IsActive]  DEFAULT ((1)),
+	[MailFrequencyinDays] [smallint] NOT NULL CONSTRAINT [DF_tblCompanyLinkedToWebServer_MailFrequencyinDays]  DEFAULT ((1)),
+	[CreatedDate] [datetime] NOT NULL CONSTRAINT [DF_tblCompanyLinkedToWebServer_CreatedDate]  DEFAULT (dateadd(minute,(330),getutcdate())),
+	[ModifiedDate] [datetime] NOT NULL CONSTRAINT [DF_tblCompanyLinkedToWebServer_ModifiedDate]  DEFAULT (dateadd(minute,(330),getutcdate())),
+	[CreatedBY] [varchar](8) NULL,
+	[ModifiedBy] [varchar](8) NULL,
+	[Remarks] [varchar](128) NULL,
+ CONSTRAINT [PK_tblCompanyLinkedToWebServer] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+----
+--USE [WebECompliance]
+GO
+/****** Object:  Table [dbo].[tblCompanyLinkedToWebServerMails]    Script Date: 04/12/2016 12:32:31 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblCompanyLinkedToWebServerMails](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[CompanyLinkedToWebserverId] [int] NOT NULL,
+	[MailTo] [varchar](128) NOT NULL,
+	[MailCC] [varchar](128) NULL,
+	[MailText] [varchar](256) NOT NULL,
+	[CreatedDate] [datetime] NOT NULL CONSTRAINT [DF_tblCompanywebserverMails_CreatedDate]  DEFAULT (dateadd(minute,(330),getutcdate())),
+	[IsDownLoadedMessage] [bit] NOT NULL CONSTRAINT [DF_tblCompanyLinkedToWebServerMails_IsDownLoadedMessage]  DEFAULT ((0))
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+ALTER TABLE [dbo].[tblCompanyLinkedToWebServerMails]  WITH CHECK ADD  CONSTRAINT [FK_tblCompanyLinkedToWebServerMails_tblCompanyLinkedToWebServer] FOREIGN KEY([CompanyLinkedToWebserverId])
+REFERENCES [dbo].[tblCompanyLinkedToWebServer] ([Id])
+GO
+ALTER TABLE [dbo].[tblCompanyLinkedToWebServerMails] CHECK CONSTRAINT [FK_tblCompanyLinkedToWebServerMails_tblCompanyLinkedToWebServer]
+----
+---USE [WebECompliance]
+GO
+/****** Object:  StoredProcedure [dbo].[AutoMailDataInsertSp]    Script Date: 04/12/2016 12:33:10 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<SCS, Ganini>
+-- Create date: <5 Apr, 2016>
+-- Description:	<To insert Mailed Data>
+-- =============================================
+ALTER PROCEDURE [dbo].[AutoMailDataInsertSp] ---run at Web Server
+@CmpLinkedToWebServerId bigint,
+@InsertResult varchar(64) output
+AS
+BEGIN TRY
+	BEGIN
+		-- SET NOCOUNT ON added to prevent extra result sets from
+		-- interfering with SELECT statements.
+		SET NOCOUNT ON; 
+		set @InsertResult = ''
+		declare @UpdTextMessage varchar(128)
+		Set @UpdTextMessage = 'Please Synchronize Acts. Ensure Internet Connectivity or Service in running Mode or Update Manually'
+		declare @OKTextMessage varchar(128)
+		Set @OKTextMessage = 'All Acts are Synchronized. Ensure you have Created Activities for them'
+
+		Declare @Result smallint
+		Declare @CurrentDownLoadDate datetime
+		select @CurrentDownLoadDate = dateadd(minute,330,getutcdate())
+
+---------Insert for Synchronized ACT data Email send only in intervals of MailFrequencyinDays
+		insert into tblCompanyLinkedToWebServerMails 
+		(CompanyLinkedToWebServerId,MailTo,MailCC,MailText,IsDownLoadedMessage)
+
+		Select tclw.Id as CompanyLinkedToWebServerId, MailTo,MailCC,
+		case when isnull(Kount,0) = 0 then @OKTextMessage else @UpdTextMessage end as TxtMsg,
+		Case when isnull(Kount,0) = 0 then 1 else 0 end as IsDownloaded
+		from tblCompanyLinkedToWebServer tclw
+		left Outer join -- Kount=0 means Synchronized, else synchronization to be done.
+			(	Select tcl.ClientId,PrevDownLoadDate,LastMailDate,
+				case when sum(tamd.Id) is null then 0 else 1 end as Kount from --count(*) as Kount 
+				(----identify the last Downloaded date from tblActDownLoadInformation
+					Select  tclw.ClientId,max(isnull(tadli.ActRequestDate,'2015-04-01')) as PrevDownLoadDate,
+						max(isnull(tclwm.CreatedDate,dateadd(minute,330,getutcdate()))) as LastMailDate
+					from tblCompanyLinkedToWebServer tclw
+					left outer join tblCompanyLinkedToWebServerMails tclwm on tclwm.CompanyLinkedToWebServerId = tclw.Id  
+					left Outer join tblActDownLoadInformation tadli on tclw.ClientId = tadli.ClientId and tadli.IsDownLoaded = 1
+					where tclw.id = @CmpLinkedToWebServerId and tclw.IsActive = 1 group by tclw.ClientId
+				) tcl -- Check with Act Master for change in Act data using Created and modifieddate of ACT
+				left outer join tblActMasterdtl tamd 
+					on (tamd.Createddate between PrevDownLoadDate and @CurrentDownLoadDate 
+						 or (isnull(tamd.Modifieddate,'2015-04-01') between PrevDownLoadDate and @CurrentDownLoadDate))	
+				Group by tcl.ClientId,PrevDownLoadDate,LastMailDate
+			) tc on tc.ClientId = tclw.ClientId
+		Where tclw.id = @CmpLinkedToWebServerId and tc.Kount=0 and Datediff(dd,tc.LastMailDate,@CurrentDownLoadDate)>=tclw.MailFrequencyinDays
+
+---------Insert for Non Synchronized ACT data Email 
+		insert into tblCompanyLinkedToWebServerMails 
+		(CompanyLinkedToWebServerId,MailTo,MailCC,MailText,IsDownLoadedMessage)
+
+		Select tclw.Id as CompanyLinkedToWebServerId, MailTo,MailCC,
+		case when isnull(Kount,0) = 0 then @OKTextMessage else @UpdTextMessage end as TxtMsg,
+		Case when isnull(Kount,0) = 0 then 1 else 0 end as IsDownloaded
+		from tblCompanyLinkedToWebServer tclw
+		left Outer join -- Kount=0 means Synchronized, else synchronization to be done.
+			(	Select tcl.ClientId,PrevDownLoadDate,LastMailDate,
+				case when sum(tamd.Id) is null then 0 else 1 end as Kount from --count(*) as Kount 
+				(----identify the last Downloaded date from tblActDownLoadInformation
+					Select  tclw.ClientId,max(isnull(tadli.ActRequestDate,'2015-04-01')) as PrevDownLoadDate,
+						max(isnull(tclwm.CreatedDate,dateadd(minute,330,getutcdate()))) as LastMailDate
+					from tblCompanyLinkedToWebServer tclw
+					left outer join tblCompanyLinkedToWebServerMails tclwm on tclwm.CompanyLinkedToWebServerId = tclw.Id  
+					left Outer join tblActDownLoadInformation tadli on tclw.ClientId = tadli.ClientId and tadli.IsDownLoaded = 1
+					where tclw.id = @CmpLinkedToWebServerId and tclw.IsActive = 1 group by tclw.ClientId
+				) tcl -- Check with Act Master for change in Act data using Created and modifieddate of ACT
+				left outer join tblActMasterdtl tamd 
+					on (tamd.Createddate between PrevDownLoadDate and @CurrentDownLoadDate 
+						 or (isnull(tamd.Modifieddate,'2015-04-01') between PrevDownLoadDate and @CurrentDownLoadDate))	
+				Group by tcl.ClientId,PrevDownLoadDate,LastMailDate
+			) tc on tc.ClientId = tclw.ClientId
+		Where tclw.id = @CmpLinkedToWebServerId and tc.Kount=1
+
+		set @InsertResult = 'Successful'
+	END
+END TRY
+
+BEGIN CATCH
+	DECLARE @ERR_MSG NVARCHAR(4000),
+			@ERR_SEVERITY INT
+	SELECT @ERR_MSG = ERROR_MESSAGE(),
+		@ERR_SEVERITY = ERROR_SEVERITY()
+	RAISERROR(@ERR_MSG,@ERR_SEVERITY,1)
+END CATCH
+
+
+-----------
+set ANSI_NULLS ON
+set QUOTED_IDENTIFIER ON
+----
+
+--USE [WebECompliance]
+GO
+/****** Object:  StoredProcedure [dbo].[AutoVersionChangeMailSelectSp]    Script Date: 04/12/2016 12:33:40 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<SCS, Ganini>
+-- Create date: <5 Apr, 2016>
+-- Description:	<To get Latest ACT Data>
+-- =============================================
+ALTER PROCEDURE [dbo].[AutoVersionChangeMailSelectSp] ---run at Web Server
+AS
+BEGIN TRY
+	BEGIN
+		-- SET NOCOUNT ON added to prevent extra result sets from
+		-- interfering with SELECT statements.
+		SET NOCOUNT ON; 
+		
+		declare @UpdTextMessage varchar(128)
+		Set @UpdTextMessage = 'Please Synchronize Acts. Ensure Internet Connectivity or Service in running Mode or Update Manually'
+		declare @OKTextMessage varchar(128)
+		Set @OKTextMessage = 'All Acts are Synchronized. Ensure you have Created Activities for them'
+
+		Declare @Result smallint
+		Declare @CurrentDownLoadDate datetime
+		select @CurrentDownLoadDate = dateadd(minute,330,getutcdate())
+		
+		Select tclw.Id as CompanyLinkedToWebServerId, MailTo,MailCC,Isnull(LastMailDate,dateadd(minute,330,getutcdate())) as LastMailDate,
+		PrevDownLoadDate,isnull(Kount,0) as Kount,tclw.MailFrequencyinDays,
+		case when isnull(Kount,0) = 0 then @OKTextMessage else @UpdTextMessage end as TxtMsg
+		from tblCompanyLinkedToWebServer tclw
+		left Outer join -- Kount=0 means Synchronized, else synchronization to be done.
+			(	Select tcl.ClientId,PrevDownLoadDate,LastMailDate,
+				case when sum(tamd.Id) is null then 0 else 1 end as Kount from --count(*) as Kount 
+				(----identify the last Downloaded date from tblActDownLoadInformation
+					Select  tclw.ClientId,max(isnull(tadli.ActRequestDate,'2015-04-01')) as PrevDownLoadDate,
+						max(isnull(tclwm.CreatedDate,dateadd(minute,330,getutcdate()))) as LastMailDate
+					from tblCompanyLinkedToWebServer tclw
+					left outer join tblCompanyLinkedToWebServerMails tclwm on tclwm.CompanyLinkedToWebServerId = tclw.Id  
+					left Outer join tblActDownLoadInformation tadli on tclw.ClientId = tadli.ClientId and tadli.IsDownLoaded = 1
+					where tclw.IsActive = 1 group by tclw.ClientId
+				) tcl -- Check with Act Master for change in Act data using Created and modifieddate of ACT
+				left outer join tblActMasterdtl tamd 
+					on (tamd.Createddate between PrevDownLoadDate and @CurrentDownLoadDate 
+						 or (isnull(tamd.Modifieddate,'2015-04-01') between PrevDownLoadDate and @CurrentDownLoadDate))	
+				Group by tcl.ClientId,PrevDownLoadDate,LastMailDate
+			) tc on tc.ClientId = tclw.ClientId
+	END
+END TRY
+
+BEGIN CATCH
+	DECLARE @ERR_MSG NVARCHAR(4000),
+			@ERR_SEVERITY INT
+	SELECT @ERR_MSG = ERROR_MESSAGE(),
+		@ERR_SEVERITY = ERROR_SEVERITY()
+	RAISERROR(@ERR_MSG,@ERR_SEVERITY,1)
+END CATCH
+
+
+-----------
+set ANSI_NULLS ON
+set QUOTED_IDENTIFIER ON
+----
+

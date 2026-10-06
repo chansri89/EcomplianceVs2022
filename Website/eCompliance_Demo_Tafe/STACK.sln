@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "STACK", "http://localhost/STACK", "{57F025E4-3DF4-4327-A46B-5F092CCAE1B4}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = ""$/STACK", ONJAAAAA"
+		SccAuxPath = ""
+		SccLocalPath = "."
+		SccProvider = "MSSCCI:Microsoft Visual SourceSafe"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/STACK"
+		Debug.AspNetCompiler.PhysicalPath = "..\STACK\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\STACK\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/STACK"
+		Release.AspNetCompiler.PhysicalPath = "..\STACK\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\STACK\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "..\..\Website\STACK\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57F025E4-3DF4-4327-A46B-5F092CCAE1B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57F025E4-3DF4-4327-A46B-5F092CCAE1B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

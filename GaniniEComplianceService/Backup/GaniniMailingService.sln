@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GaniniMailService", "GaniniMailService\GaniniMailService.csproj", "{EF78B483-BBC9-4335-A460-ADDA6FFB5219}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeneratingMail", "GeneratingMail\GeneratingMail.csproj", "{C4FAC586-6C6E-407C-B19F-229D55883AFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GaniniLib", "..\Utilities3.0\Ganini.lib\GaniniLib.csproj", "{25C96A58-1553-4833-93C6-E5A1E917D3E0}"
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 1
+		SccProjectUniqueName0 = ..\\Utilities3.0\\Ganini.lib\\GaniniLib.csproj
+		SccProjectName0 = \u0022$/Utilities3.0/GaniniLib\u0022,\u0020XOIGAAAA
+		SccLocalPath0 = ..\\Utilities3.0\\Ganini.lib
+		SccProvider0 = MSSCCI:Microsoft\u0020Visual\u0020SourceSafe
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF78B483-BBC9-4335-A460-ADDA6FFB5219}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF78B483-BBC9-4335-A460-ADDA6FFB5219}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF78B483-BBC9-4335-A460-ADDA6FFB5219}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EF78B483-BBC9-4335-A460-ADDA6FFB5219}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF78B483-BBC9-4335-A460-ADDA6FFB5219}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF78B483-BBC9-4335-A460-ADDA6FFB5219}.Release|x86.ActiveCfg = Release|Any CPU
+		{C4FAC586-6C6E-407C-B19F-229D55883AFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4FAC586-6C6E-407C-B19F-229D55883AFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4FAC586-6C6E-407C-B19F-229D55883AFD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C4FAC586-6C6E-407C-B19F-229D55883AFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4FAC586-6C6E-407C-B19F-229D55883AFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4FAC586-6C6E-407C-B19F-229D55883AFD}.Release|x86.ActiveCfg = Release|Any CPU
+		{25C96A58-1553-4833-93C6-E5A1E917D3E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25C96A58-1553-4833-93C6-E5A1E917D3E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25C96A58-1553-4833-93C6-E5A1E917D3E0}.Debug|x86.ActiveCfg = Debug|x86
+		{25C96A58-1553-4833-93C6-E5A1E917D3E0}.Debug|x86.Build.0 = Debug|x86
+		{25C96A58-1553-4833-93C6-E5A1E917D3E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25C96A58-1553-4833-93C6-E5A1E917D3E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25C96A58-1553-4833-93C6-E5A1E917D3E0}.Release|x86.ActiveCfg = Release|x86
+		{25C96A58-1553-4833-93C6-E5A1E917D3E0}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

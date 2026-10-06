@@ -1,0 +1,98 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs"
+    Inherits="MasterPage" %>
+
+<%@ Register Assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+    Namespace="System.Web.UI" TagPrefix="asp" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>eCompliance</title>
+    <style type="text/css">
+        .style14
+        {
+            height: 489px;
+        }
+        .style16
+        {
+            width: 1105px;
+        }
+    </style>
+    <link href="CSS/sampleStyleSheet.css" rel="stylesheet" type="text/css" />
+</head>
+<body oncontextmenu="return false" 
+    style="background: url(Images/MasterPage.JPG) no-repeat; height: 729px;">
+    <form id="form1" runat="server">
+    <div class="wrap">
+  
+    <div style="width: 1289px">
+    <asp:Panel ID="Panel1" runat="server" Height="60px" Font="Arial" Font-Size="Large" 
+            BorderStyle ="Ridge" Width="1200px">
+        <table >
+            <tr><td></td>
+                <td >
+                    <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/Ganinilogo.jpg" 
+                        Width="69px" align="Right" Height="47px" style="margin-left: 0px" />
+                </td>
+            
+                <td class="style16" align = "center" > 
+                <asp:Label ID="lblHeading" runat="server" Height="20px" 
+                        Text="eCompliance" Font-Size = "Large" Font-Italic="true"
+                                Width="394px" ForeColor="Navy"  />
+                                  </td >                
+                <td>
+                    <asp:Image ID="Image2" runat="server" ImageUrl="~/Images/Capri.jpg" 
+                        Width="65px" align="Right" Height="50px" style="margin-left: 0px" />
+                </td><td></td>
+            </tr>
+        </table>
+    </asp:Panel>
+    </div>
+        <table width="100%" style="height: 496px; margin-top: 0px;"cellspacing="10px" >
+            <tr>
+              
+                <td id="td3" class="style14" align="left" runat="server">
+                    <div style="background-color: Transparent">  
+                    <asp:ScriptManager ID="ScriptManager1" runat="server" />
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server" >
+                        <ContentTemplate>                 
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"  >
+                        &nbsp;<br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />            
+                        </asp:ContentPlaceHolder>
+                        </ContentTemplate>
+                        </asp:UpdatePanel>                                              
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <br />
+     </div>
+    </form>
+ 
+</body>
+</html>

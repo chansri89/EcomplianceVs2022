@@ -1,0 +1,209 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage2.master.cs" Inherits="MasterPage2" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ Register Assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+    Namespace="System.Web.UI" TagPrefix="asp" %>
+<%--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">--%>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="Head1" runat="server">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>RDC Stack</title>
+    <style type="text/css">
+        .style12
+        {
+            height: 327px;
+            width: 208px;
+            visibility: visible;
+        }
+        .style14
+        {
+            height: 327px;
+        }
+        .style15
+        {
+            width: 82%;
+        }
+        .style17
+        {
+            width: 183px;
+            height: 32px;
+        }
+        .style19
+        {
+            width: 183px;
+            height: 37px;
+        }
+    </style>
+</head>
+<body oncontextmenu="return false" 
+    style="background: url(Images/MasterPage.JPG) no-repeat; height: 729px;">
+     <%--<body oncontextmenu="return false" 
+    style="background: url(~/Images/RaneLogo1.jpg) no-repeat; height: 729px;">--%>
+    <form id="form1" runat="server">
+   
+    <div class="wrap">
+     <%--<asp:ScriptManager ID="ScriptManager2" runat="server" />--%>
+                   <%-- <div class="Login_body">
+                        <div class="leftLogin">
+                            <div class="cont">
+                                <div style="height: 186px; margin-top: 0px;">
+									<div style="background-color:#265196;height: 41px;width: 161px;float: left;position: absolute;top: 156px; left: -1px;"></div>
+                                    <div>
+                                        <img src="Images/logo.jpg" alt="" 
+                                            style="margin-left: 150px; height: 154px; margin-top: 28px; width: 413px;"></div>
+									<div style="background-color: #183674;height: 41px;width: 696px; float: left;position: absolute;left: 570px; top: 106px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+      </div>--%>
+      <div>
+      
+      
+          <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/RaneLogo1.jpg"  
+              Width="1302px" style="margin-left: 7px;background-color:transparent" />
+                <table align="right" style="width: 223px; height: 12px">
+             <tr>
+             <td class="style22">
+                 <asp:Label ID="lbluname" runat="server" ForeColor="#333399"  Width="100px" 
+                     Font-Size="X-Small" style="text-align: right"></asp:Label>
+             </td>
+             <td class="style21">
+                 <asp:Label ID="lblDate" runat="server" ForeColor="#333399" 
+                     style="margin-left: 0px; text-align: right;" Width="106px" 
+                     Font-Size="X-Small" ></asp:Label>
+                 </td></tr></table>
+      </div>
+      <asp:Panel ID="PnlMenu" runat="server" Width="1185px">
+      <asp:SiteMapPath ID="SiteMapPath" runat="server" PathSeparator=" > " 
+              Font-Size="X-Small"></asp:SiteMapPath>
+        </asp:Panel>
+    <div>
+        <table width="100%" style="height: 496px; margin-top: 0px;"cellspacing="10px" >
+            <tr>
+               <td id="td1" 
+                   style="border-style: groove; border-color: #3333CC; vertical-align: top; border-collapse: separate; border-right-width: medium; border-bottom-width: medium; border-left-width: medium;"
+                    class="style12" runat="server" >
+                  <%--<asp:Panel ID="Panel3" runat="server" Height="200px" Width="292px" 
+                       BorderWidth="1px">--%>
+                    <asp:Panel ID="Panel1" runat="server" Height="59px" Width="228px" 
+                       style="margin-bottom: 0px">
+                       <table>
+                            <tr>
+                                <td>
+                                    <asp:DropDownList ID="ddlActivity" runat="server" Height="38px" Width="219px" 
+                                        Font-Size="X-Small">
+                                    <asp:ListItem>--Select ACT Please--</asp:ListItem>
+                                    <asp:ListItem>Apprentice Act</asp:ListItem>                                     
+                                    
+                                     <asp:ListItem>Contract Labour Regulation and abolition Act</asp:ListItem>
+                                                                        
+                                    </asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center">
+                                    <asp:Button ID="btnGo" runat="server" Text="Go" 
+                            onclick="btnGo_Click" Font-Size="X-Small" />
+                                </td>
+                            </tr>
+                        </table>
+                        </asp:Panel>
+
+                    <br />
+                    <asp:Panel ID="pnlTree" runat="server" Height="493px" Width="212px" 
+                       style="margin-top: 11px" >
+                        <asp:TreeView ID="TreeView2" runat="server" Font-Names="arial" 
+                            Font-Size="Large" ForeColor="Black" Height="168px" Width="135px" 
+                            ImageSet="Arrows">
+                            <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
+                            <Nodes>
+                                <asp:TreeNode Text="Admin" Value="Admin" Expanded="True">
+                                    <%--<asp:TreeNode Text="Roles" Value="Users" 
+                                        NavigateUrl="~/UnderConstruction.aspx"></asp:TreeNode>--%>
+                                     <asp:TreeNode Text="Assign Program to Roles" Value="Assign Program to Roles" 
+                                        Selected="false" NavigateUrl="~/AssignProgramtoRoles.aspx"></asp:TreeNode>
+                                    <asp:TreeNode Text="Assign User Roles" Value="Assign User Roles" 
+                                        Selected="false" NavigateUrl="~/AssignUserRoles.aspx"></asp:TreeNode>
+                                </asp:TreeNode>
+                                <asp:TreeNode Text="Masters" Value="Masters" Expanded="True">
+                                   <asp:TreeNode Text="CompanyMaster" Value="CustomerMaster" 
+                                        NavigateUrl="~/CompanyMaster.aspx"></asp:TreeNode>
+                                    <asp:TreeNode Text="EmployeeMaster" Value="EmployeeMaster" 
+                                        NavigateUrl="~/EmployeeMaster.aspx"></asp:TreeNode>
+                                    <asp:TreeNode NavigateUrl="~/CategoryMaster.aspx" Text="CategoryMaster" 
+                                        Value="CategoryMaster"></asp:TreeNode>
+                                    <asp:TreeNode NavigateUrl="~/DepartmentMaster.aspx" Text="DepartmentMaster" 
+                                        Value="DepartmentMaster"></asp:TreeNode>
+                                    <asp:TreeNode NavigateUrl="~/SeverityMaster.aspx" Text="SeverityMaster" 
+                                        Value="SeverityMaster"></asp:TreeNode>
+                                    <asp:TreeNode NavigateUrl="~/FrequencyMaster.aspx" Text="FrequencyMaster" 
+                                        Value="FrequencyMaster"></asp:TreeNode>
+                                    <asp:TreeNode NavigateUrl="~/DocumentTypeMaster.aspx" Text="DocumentTypeMaster" 
+                                        Value="DocumentTypeMaster"></asp:TreeNode>
+                                    <asp:TreeNode NavigateUrl="~/ActMaster.aspx" Text="ActMaster" 
+                                        Value="ActMaster">
+                                    </asp:TreeNode>
+                                    <asp:TreeNode NavigateUrl="~/ActivityMaster.aspx" Text="ActivityMaster" 
+                                        Value="ActivityMaster"></asp:TreeNode>
+                                    <asp:TreeNode NavigateUrl="~/AsignActivityforCompany.aspx" 
+                                        Text="ActivityForCompany" Value="ActivityForCompany">
+                                    </asp:TreeNode>
+                                </asp:TreeNode>
+                                <asp:TreeNode Text="Transaction" Value="Transaction" Expanded="False">
+                                     <asp:TreeNode Text="Activity" Value="Activity" 
+                                         NavigateUrl="~/UnderConstruction.aspx"></asp:TreeNode>
+                                    <asp:TreeNode Text="NonCompliance" Value="NonCompiance" 
+                                         NavigateUrl="~/UnderConstruction.aspx"></asp:TreeNode>
+                                </asp:TreeNode>
+                                <asp:TreeNode Text="Reports" Value="Reports" 
+                                    NavigateUrl="~/UnderConstruction.aspx"></asp:TreeNode>
+                            </Nodes>
+                            <NodeStyle Font-Names="arial" Font-Size="8pt" ForeColor="Black" 
+                                HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px" />
+                            <ParentNodeStyle Font-Bold="False" />
+                            <SelectedNodeStyle Font-Underline="True" ForeColor="#5555DD" 
+                                HorizontalPadding="0px" VerticalPadding="0px" />
+                        </asp:TreeView>
+                    </asp:Panel>
+                  <%--  </asp:Panel>--%>
+                </td>
+                <td id="td3" class="style14" align="left" runat="server">
+                     <asp:ScriptManager ID="ScriptManager1" runat="server" />
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server" >
+                        <ContentTemplate>                 
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        &nbsp;<br />
+                            <asp:Panel ID="Panel2" runat="server" Height="579px">
+                            </asp:Panel>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />            
+                        </asp:ContentPlaceHolder>
+                        </ContentTemplate>
+                        </asp:UpdatePanel>                                              
+                   <%-- </div>--%>
+                </td>
+            </tr>
+        </table>
+        <br />
+    </form>
+</body>
+</html>

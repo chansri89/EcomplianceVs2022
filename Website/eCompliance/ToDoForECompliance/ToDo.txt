@@ -1,0 +1,406 @@
+﻿--changes 230207 as per mail kavviya 230206
+insert into tblprograms (ProgramName,ProgramAccessPath,IsActive,MainMenu,ChildMenu,ProgramSequence)
+		values ('ReportECompliance','rptMISReportECompliance.aspx',1,'MIS','ReportECompliance',5007)
+
+-----------------------
+--101 pass SCs001
+--changes 180315
+MasResponsibleGroupForActivitySelectSp --disabled the department to pick all the Respgroup of the company .it may add data with inactive set for other respgroup in activityforCompanytbl
+MasActivityMasterSelectSp -- @actId = 0 will cause Network traffic and hence defaulted to 1 for one act data only.
+MasActivityActionsectsp -- When taa.ID is not set default Dueyear,duemonth activity data will be created in display. To avoid futre data display
+
+programchanges 
+1. Activity Master --> to show filter default starts at Apprecentice act in Activity MAster and ActMAster
+2. ACT Master --> to show filter defaut set to apprentice act no need to change in SP.
+			 ----> Autopostback on filter removed
+3. Employeemaster ----> Autopostback on Employee filter removed
+4. Activity Action to display all action including certain actions not created due to initial start period of application
+5. rptactivityActionDate adjusted for column
+
+----changes 020317 
+1. Reportviewer hiding the menu -- Added foreground CSS file with z index for menu panel
+
+---Changed 140217
+insert into tblprograms (ProgramName,ProgramAccessPath,IsActive,MainMenu,ChildMenu,ProgramSequence)
+		values ('Pending Activities','DashBoard.aspx',1,'DashBoard','Pending Activities',8001)
+
+1. MasActivityActionSelectSp --> changed months to days count for showing green, Also to enssure as and when selection of months is proper when null is in due month and date
+                             --> as and when date made as 28th instead of 1
+2. MasActivityActionInsertandUpdateSp -- when as and when activity inserted frequency id was not inserted hence changed
+3. ActivityActionAutoCreateAsAndWhensp --ok
+4. ActivityActionAutoCreatesp			--ok
+5. DashBoardActivityActionSelectSp	--ok
+6. AdmUserInfoSp
+7. MasCompanyMasterInsertandUpdateSp
+8. EmployeeActMasterSelectSp
+9. ActivityActionAutoCreateWeekly
+10.MasActivityMasterSelectSp
+
+--General
+1. Check if Action document and activity document locations are proper in web config in TAFE
+2. Update the parent company for MDU
+3. Frequency Days chang to Monday or tuesday in tafc table
+4. web config ;Connect Timeout=1200
+
+-----Changes 260117
+1. MasActmaster select
+2. MasActivityMaster select
+3. MasActivityMasterInsertandUpdateSp
+4. MasLocEmployeeListSp
+5. MasActivityDocumentInsertUpdatesp
+----
+changes on 240117
+1. Activity Master to include Company -- MAsActivitySelectsp changed -- UI changed to have companyCode column
+2. MasResponsibleGroupForActivitySelectSp
+3.MasActivityMasterInsertandUpdateSp
+4. MAsActivitySelect
+5.MasActivityMasterInsertandUpdateSp
+-------------------------
+Spec for consideration in ECompliance
+
+1. Multiple Document Attachment for Action																	--- Completed.
+2. Password Policy
+	** tafe will pass employeeEmailid from their Portal and our system will work.-- Tafe Ramki and Shobana		--- completed Web Config, Two New sp's to get roles based on email
+	** AD interface -- Password Policy											---- IT team				---Done 070216 AD method to be written
+	** Change of Password Policy enforcement																	--- Number of months for change+other policy implemented.
+3. Activity Action document storage to follow Directory+FinYear+FileNAme		---It Team					--- done 080216
+4. Penal Provisions																							---- Included in ActDetail-->200316 scs
+5. Activity Action to display data as per Months Configurable	-- Tafe Ramki and Shobana						---Completed tblCompanyParameter AA added
+6.  ActDetail to have 
+   ** Effective and End Date(Null for running acts )								---- Included in ActDetail-->200316 scs			
+   ** Responsible person ( may be depatment and designation)						---- Included in ActDetail-->200316 scs
+   ** Acts drop down and activities to show based on Company Activities and not all Acts check??.s
+   ** Can description be part of Grid in Activity Master							---- Included in ActDetail-->200316 scs
+   ** Indicator red for old acts and blue for upcoming acts in the act grid			---- Included in ActDetail-->200316 scs
+   ** Collapse button while entering act detail										---- Included in ActDetail-->200316 scs
+   ** Classifciation of ACt to come from Statemaster with Central as one of the data ---- done
+
+7. Copy protect																		---- Done 120216
+8. Set a CompanyActTable where Company Can select the Acts that are applicable to them	---- Created tblCompanyAct, 
+	** BAsed on Above table pull Acts														---- Now ACTS and Activities will be based on CompanyACT. 040416
+9. Frequency master to have once in 2 Months and once in so many year specify		---- Once in two months action creation sp changed and tested
+	** Auto email to accomadate the above 
+10.	report on Completiondate and cretaeddate based on comany, employee (all)       ---Done 040416
+11. Offline program to Update ACTS from Web Server									---- Done 070416
+	** Service Program at the Web													---- Done 050416
+	** Offline Manual Synchronization program										---- Done 070416
+12. Auto Program for Calling Web Server to Update Acts
+	** Can we have Companywise ACTS Applicable  which will inform about changes (Acts to be Left Outer Join) ---Completed table and program created. Not possible to link CompanyACT
+	** Auto Email to respective Company Admin when changes happen			-----Done 120416
+13. Set a CompanyActTable where Company Can select the Acts that are applicable to them						---- Created tblCompanyAct
+	**  email When Acts have changed ------No Web server can send mails only local system to get its right ACTS
+14. Mail sent Listing in a table													-----Done 120416
+
+
+-----------------
+Work In progress
+
+5. XL Upload for 
+	** EmpLoyee , Company, Department Group persons Masters
+	** Activity for New activity or change in frequency
+
+8.  Can Activity Master and ActivityDocument be merged ??. ---- No each company has to declare??.
+10. Report from Audit Point of view
+
+
+Bugs to be rectified
+1. Activity Action  
+	** select will fail for dates < 3 yrs of current date ( Pyear, Cyear Future year)								--- Completed.
+		solution 'ddlRemaingerYear' has a SelectedValue which is invalid because it does not exist in the list of items.when selecting year 3 yrs before
+	** SHow only so many months(configured) data that are complete in all respect and all data not complete.					-- Sp Changed 
+	** For a fresh action if we save action and come to Document it is showing error even if document is selected  --completed 250116 Masterpage3 to be selected.
+	** IF activity action modified then previous data to be preserved. also document attachment						-- program change+ change MasActivityActionInsertandUpdateSp in update. 
+	** If document changed move table data relevant to document to modified folder under that dirctory.				--- MasActivityActionDocumentInsertandUpdateSp in update  copy to another table
+	** When on green and doctype is avbl then it should also show the Document panel. Show doc panel also			--- Completed
+	** when edit doc is done system expects file to be loaded again													--- Completed 080216
+	** After selecting a activity action back provision to be given so that without entering data we can progress --- not necessary it does not lock 080216
+	** in tblActivityAction we should bring the frequencyID also. else when frequency changes it can give issues for old data. -- DONE
+	** Screen adjustments to come on the same page																				---Done 080216
+	**  As and when should have due date in activityAction as last date of that month or atleast due month
+	** completed date to be within some days ?? reviewer can update??.cannot be prior to previous action due date
+
+2. ACTS 
+	** ActId is set to int as it can grow big. consequently change related SP from Smallint to int						--completed
+	** Actdtl Description increased to 512, Section to 32, ActRule to 32
+3. Change Password does not execute script manager when password check fails										-- Done by giving Message label.
+4. Reset Password to be added.																						-- Done 090116
+5. Location department to show employees in that unit and its Parent Companies and not others						-- Yes it is like that only 080216 scs
+
+
+---------------------
+changes 250716
+1. alter table tblactmasterDtl add  FileId int default 0 --indictes act master dtl from which file 
+
+--sp
+1. TranACTMasterInsertSp
+
+Changes done
+1. SPs
+	** AdmChkLoginSp
+	** AdmUserAccessProgramsSelectSp
+	** AdmChangePaswordUpdateSp 
+	** AdmPasswordPolicySelectSp
+	** AdmResetPaswordUpdateSp -- for Password Reset
+	** AdmChkPortalLoginSp --Portal Login
+	** AdmUserInfoPortalLoginSp --portal Login
+	** AdmDomainSelectSp --New -- get domain name from customer and populate
+	** AdmCompanyParameterUpdateSp -- New
+	** AdmGetHoldingCompanySp -- New
+	** MasActivityActionSelectSp 
+	** MasEmployeeMasterInsertandUpdateSp 
+	** MasDepartmentMasterInsertandUpdateSp
+	** MasActMasterInsertandUpdateSp changed ------------smallint to int
+	** MasActMasterSelectSp ------------smallint to Int
+	** MasActivityMasterInsertandUpdateSp ------------smallint to int
+	** MasActivityMasterSelectSp ---------- smallint to int + tamd.description
+	** MasActivityForCompanyMasterInsertandUpdateSp --------smallint to int
+	** MasActivityForCompanyMasterSelectSp ---------smallint to int
+	** MasActivityDocumentMasterSelectSp ---------smallint to int
+	** MasActivityActionNonComplianceTaskInsertandUpdateSp -----smallint to int
+	** MasNonComplianceTaskForActivityForCompanySelectSp -------smallint to int
+	** MasCompanyActInsertUpdateSp
+	** MasCompanyActSelectSp
+	** MasActivityActionInsertandUpdateSp
+	** ActivityActionAutoCreatesp
+	** ActivityActionAutoCreateWeekly
+	** MailDetailSelectSp -- to remove hardcode for seveirtyShortname = 'A'
+	** MailDetailsforRedAlertActivitysp 
+	** MailDetailsforRedAlertCompanyAdminLevelActivitysp
+	** MailDetailsforRedAlertGroupLevelActivitysp
+	** MailDetailsforRedAlertPlantLevelActivitysp
+	** MasEmployeeMasterInsertandUpdateSp
+	** MasCompanyMasterSelectSp
+	** MASStatemasterInsertUpdateSP
+	** MasActMasterInsertandUpdateSp -- Decription ncreased to 512,actrule 32, section to 32
+	** MasActMasterSelectSp
+	** MasStateMasterSelectSp
+	** MasActMaxVersionSelectSp
+	** WCFActMasterSelectSp
+	** WCFACTDataInsertSp
+	** WCFActDownLoadedUpdateSp
+	** WCFCheckIPSp
+	** WCFUSerAccessInfoSp
+	** WCFUSerActivitySp
+	** WCFUSerPadhivuSp
+
+2. Table Changes
+	** Increase ParameterNAme size to 24 from 12 in tblCompanyParameter
+	** INSERT INTO tblCompanyParameter (ParameterCode ,ParameterName ,LastSlno)  VALUES ('AA','ActvityAction',3 ) 33 in Months
+	** INSERT INTO tblCompanyParameter (ParameterCode ,ParameterName ,LastSlno,Remarks)  VALUES ('AV','ActVersion',0,'1.00') version numbering
+	** INSERT INTO tblCompanyParameter (ParameterCode ,ParameterName ,LastSlno,Remarks)  VALUES ('CLGud','CLGud',9,'fJljc27RBCPdh6StNRfKjSBuEguUaIWwBCO/uoJ92vA=') fresh insta
+	** tblActMaster change Id to Int from Smallint
+	** tblActMAsterDtl also change ACTId to Int being FK with tblActMaster
+	** tblEmployeePasswordUpdates -- keeping old passwords.Created to monitor when password changed last time.
+		** insert into tblEmployeePasswordUpdates (EmployeeCode,OldPassword) Select EmployeeCode,Password from tblEmployeeMAster 
+	** tblPasswordPolicy -- copy with data
+	** tblDomains -- create domain data with edpadmin
+	** tblCompanyAct created
+	** tblCompanyActTemp new table--> select * into tblCompanyActTemp from tblCompanyAct ----create a temp table
+	** insert into tblprograms (ProgramName,ProgramAccessPath,IsActive,MainMenu,ChildMenu,ProgramSequence)
+		values ('Reset Password','ResetPassword.aspx',1,'Admin','Reset Password',1003)
+	** insert into tblprograms (ProgramName,ProgramAccessPath,IsActive,MainMenu,ChildMenu,ProgramSequence)
+		values ('Company ACTs','CompanyACT.aspx',1,'Admin','Company ACTs',3011)
+	** insert into tblprograms (ProgramName,ProgramAccessPath,IsActive,MainMenu,ChildMenu,ProgramSequence)
+		values ('ActionDate Reporting','rptActionComplete.aspx',1,'MIS','ActionDate Reporting',5003)
+	** tblWIdParameter -- new table
+	** Alter table tblActivityAction add  DataCreatedDate datetime
+	** alter table tblActivityAction add FrequencyId  tinyint 
+	** tblActivityActionHistory -- new table
+	** Alter table tblMailDetails add ID bigint --- set the identity value
+	** Alter table tblMailDetails add CreatedDAte datetime default Dateadd(minute,330,getUTCDate()) 
+	** tblActdtl change the following
+		-- Description = 512, Section = 32, actrule = 32
+	** --USE [eCompliance]
+		GO
+		ALTER TABLE [dbo].[tblUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_tblUserRoles_tblRoleMaster] FOREIGN KEY([RoleID])
+		REFERENCES [dbo].[tblRoleMaster] ([Id])
+		GO
+		ALTER TABLE [dbo].[tblUserRoles] CHECK CONSTRAINT [FK_tblUserRoles_tblRoleMaster]
+
+		--USE [eCompliance]
+		GO
+		ALTER TABLE [dbo].[tblUserRoles]  WITH CHECK ADD  CONSTRAINT [FK_tblUserRoles_tblEmployeeMaster] FOREIGN KEY([EmployeeCode])
+		REFERENCES [dbo].[tblEmployeeMaster] ([EmployeeCode])
+		GO
+ALTER TABLE [dbo].[tblUserRoles] CHECK CONSTRAINT [FK_tblUserRoles_tblEmployeeMaster]
+
+	** alter table tblCompanyParameter add Remarks varchar(256) to hold clgud
+alter table tblActMAster add AuditHdrId int
+update tblactmaster set AuditHdrId = Id
+
+Alter table tblActMasterDtl add Frequency varchar(32)
+Alter table tblActMasterDtl add Implication varchar(512)
+Alter table tblActMasterDtl add ImplicationSection varchar(32)
+Alter table tblActMasterDtl add Liability varchar(32)
+Alter table tblActMasterDtl add AffectedPerson varchar(32)
+Alter table tblActMasterDtl add Importance varchar(8)
+Alter table tblActMasterDtl add EffectiveDate Datetime
+Alter table tblActMasterDtl add ExpiryDate Datetime
+Alter table tblActMasterDtl add ValidityStatus varchar(8)
+Alter table tblActMasterDtl add VersionNumber varchar(8)
+Alter table tblActMasterDtl add IsNew bit
+Alter table tblActMasterDtl add IsUpdated bit
+Alter table tblActMasterDtl add CreatedBy varchar(8)
+Alter table tblActMasterDtl add AuditUpLoadId int default 0
+update tblActMasterDtl set EffectiveDAte = '2016-04-01'
+
+dbcc checkident('tblWidParameter',reseed,0)
+
+alter table tblDepartmentmaster alter column DepartmentShortName varchar(8) 
+alter table tblEmployeeMaster alter column ActivityDesignation varchar(64) 
+alter table tblstatemaster alter column StateShortName varchar(8)
+
+--USE [eCompliance]
+GO
+/****** Object:  Table [dbo].[tblExcelUploadTemp]    Script Date: 03/21/2016 16:28:01 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblExcelUploadTemp](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[Column1] [varchar](255) NULL,
+	[Column2] [varchar](255) NULL,
+	[Column3] [varchar](255) NULL,
+	[Column4] [varchar](255) NULL,
+	[Column5] [varchar](255) NULL,
+	[Column6] [varchar](255) NULL,
+	[Column7] [varchar](255) NULL,
+	[Column8] [varchar](255) NULL,
+	[Column9] [varchar](255) NULL,
+	[Column10] [varchar](255) NULL,
+	[Column11] [varchar](255) NULL,
+	[Column12] [varchar](255) NULL,
+	[Column13] [varchar](255) NULL,
+	[Column14] [varchar](255) NULL,
+	[Column15] [varchar](255) NULL,
+	[Column16] [varchar](255) NULL,
+	[Column17] [varchar](255) NULL,
+	[Column18] [varchar](255) NULL,
+	[Column19] [varchar](255) NULL,
+	[Column20] [varchar](255) NULL,
+	[Column21] [varchar](255) NULL,
+	[Column22] [varchar](255) NULL,
+	[Column23] [varchar](255) NULL,
+	[Column24] [varchar](255) NULL,
+	[Column25] [varchar](255) NULL,
+	[Column26] [varchar](255) NULL,
+	[Column27] [varchar](255) NULL,
+	[Column28] [varchar](255) NULL,
+	[Wid] [bigint] NULL,
+	[CreatedDate] [datetime] NOT NULL CONSTRAINT [DF_tblExcelUploadTemp_CreatedDate]  DEFAULT (dateadd(minute,(330),getutcdate())),
+	[Column29] [varchar](255) NULL,
+	[Column30] [varchar](255) NULL,
+	[Column31] [varchar](255) NULL,
+	[Column32] [varchar](255) NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+----------------
+dbcc checkident('tblExcelUploadTemp',reseed,0)
+------------
+--USE [eCompliance]
+GO
+/****** Object:  Table [dbo].[tblCompanyMasterUpLoadStatus]    Script Date: 03/21/2016 14:24:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblCompanyMasterUpLoadStatus](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[Wid] [bigint] NOT NULL,
+	[LocationCode] [varchar](8) NOT NULL,
+	[LocationName] [varchar](64) NOT NULL,
+	[LocationType] [varchar](16) NULL,
+	[LocationShortName] [varchar](16) NULL,
+	[LocationParentCode] [varchar](8) NULL,
+	[StateShortName] [varchar](8) NULL,
+	[Reason] [varchar](256) NOT NULL,
+	[CreatedDate] [datetime] NOT NULL CONSTRAINT [DF_tblCompanyMasterUpLoadStatus_CreatedDate]  DEFAULT (dateadd(minute,(330),getutcdate()))
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+--------
+--USE [eCompliance]
+GO
+/****** Object:  Table [dbo].[tblUploadedFiles]    Script Date: 03/22/2016 10:40:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblUploadedFiles](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Wid] [bigint] NULL,
+	[UpLoadedFileName] [varchar](64) NOT NULL,
+	[UploadedDate] [datetime] NOT NULL CONSTRAINT [DF_tblUploadedFiles_UploadedDate]  DEFAULT (dateadd(minute,(330),getutcdate())),
+	[FileType] [varchar](16) NOT NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+------
+--USE [ECompliance]
+----drop table [tblActDownLoadInformation]
+GO
+/****** Object:  Table [dbo].[tblActDownLoadInformation]    Script Date: 04/07/2016 15:15:36 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblActDownLoadInformation](
+	[Id] [bigint] IDENTITY(1,1) NOT NULL,
+	[ClientID] [varchar](256) NOT NULL,
+	[ClientIP] [varchar](32) NOT NULL,
+	[ClGuId] [varchar](256) NULL,
+	[ACTRequestDate] [datetime] NOT NULL CONSTRAINT [DF_tblActDownLoadInformation_RequestDate]  DEFAULT (dateadd(minute,(330),getutcdate())),
+	[IsDownLoaded] [bit] NOT NULL CONSTRAINT [DF_tblActDownLoadInformation_IsDownLoaded]  DEFAULT ((0)),
+	[DownLoadDate] [datetime] NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+-----------
+--USE [eCompliance]
+GO
+/****** Object:  Index [ix_crDate]    Script Date: 04/07/2016 14:46:02 ******/
+CREATE NONCLUSTERED INDEX [ix_crDate] ON [dbo].[tblActMasterDtl] 
+(
+	[CreatedDate] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+-----
+
+--USE [eCompliance]
+GO
+/****** Object:  Index [Ix-Modidate]    Script Date: 04/07/2016 14:46:10 ******/
+CREATE NONCLUSTERED INDEX [Ix-Modidate] ON [dbo].[tblActMasterDtl] 
+(
+	[ModifiedDate] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+
+
+--------------
+
+
+
+3. Web Config Changes
+	** <add key="PasswordPolicy" value="Y" /> -- introduced to check Password Policy capital small, numeric and length
+	** <add key="PortalLogin" value="Y" /> -- scs100116 for remote login through portal
+	** <add key="ClGud" value="Y" /> <get the encrypted value of -->
+
+    <!--XL File Path Config Starts-->
+    <add key="TempFilePath" value="C:\TempFilePath\"/>
+    <add key="ExcelFileSheetName" value="Sheet1"/>
+    <add key="ExcelExtension" value=".xls"/>
+    <add key="CSVExtension" value=".csv"/>
+    <add key="FolderPath" value="E:\Downloads\GatesUnit\UploadFolder\"/>
+    <!--XL File Path Ends-->

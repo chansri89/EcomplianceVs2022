@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <appSettings>
+    <add key="SleepTime" value="1"/>
+	  <add key="AdminMailId" value="r.prabhakaran@rane.co.in"/>
+	  <add key="FromMailId" value="ttt@rane.co.in" />
+	  <add key="DisFilePath" value ="D:\Upload\"/>
+	  <add key="DesigFile" value ="D:\DespatchFileBackup\"/>
+	  <add key="ExcelFilepath" value="D:\Rane-ExcelFiles\"/>
+	  <add key ="Ipaddress" value="121.241.224.4"/>
+	  <add key ="Port" value="25"/>
+	  <add key ="Date" value="5"/>
+	  <!-- <add key="Date" value="NoDate"/>  if you are specify the FromDate and ToDate,Give Date as NoDate,otherwise it take configured date-->
+	  <add key ="FromDate" value="01-jun-2008"/>
+	  <add key="ToDate" value="30-jun-2008"/>
+	  <add key="LogFile" value="D:\ranedata"/>
+	  </appSettings>
+  <connectionStrings>
+    <add name="DefaultConnection" connectionString="Data source=192.168.120.153;User id=ranedis;password=ranedis;Provider=MSDAORA." providerName="System.Data.OleDb"/>
+  </connectionStrings>
+</configuration>

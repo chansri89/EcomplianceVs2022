@@ -1,0 +1,99 @@
+==============================
+-- Date:-- 0-5-13 version--1.04
+-- =============================================
+Bugs:
+1.Activity Action:
+	a.while saving Document for action taken it gives null reference error and does not save it.-Code Change
+Improvemets:
+1.ActivityMaster:
+	a."As and when" if selected for Frequency -- don't allow to select due month,duedate,dueday and trigger month,triggerdate,triggerday.
+	 	a1) For the above problem change Web config - <add key="Freq1" value="As and When"/>
+2.Sp Changes;
+	a.MasActivityMasterInsertandUpdateSp.
+	b.ActivityActionAutoCreatesp.
+	c.ActivityActionAutoCreateWeekly.
+	d.MailDetailForAnuallySelectSp.
+==============================
+==============================
+
+==============================
+-- Date:-- 0-5-13 version--1.04
+-- =============================================
+Bugs:
+1.Activity Action:
+	a.while saving Document for action taken it gives null reference error and does not save it.-Code Change
+Improvemets:
+1.ActivityMaster:
+	a."As and when" if selected for Frequency -- don't allow to select due month,duedate,dueday and trigger month,triggerdate,triggerday.
+	 	a1) For the above problem change Web config - <add key="Freq1" value="As and When"/>
+2.Sp Changes;
+	a.MasActivityMasterInsertandUpdateSp.
+	b.ActivityActionAutoCreatesp.
+	c.ActivityActionAutoCreateWeekly.
+	d.MailDetailForAnuallySelectSp.
+==============================
+==============================
+
+
+
+-- Date:--29-4-13 version--1.03
+-- =============================================
+Improvemets:
+1.Activity Action:
+	a.Added Filter for Activity Name.
+
+2.ActivityMaster:
+	a.Added Filter for Activity Name.
+	b.Design Change
+3.Mailing Services Installed.
+4.Sp Change;
+	a.MailDetailForAnuallySelectSp.
+	b.MasActivityActionSelectSp.
+==============================
+-- Date:18-03-13 version--1.02
+-- =============================================
+Improvemets:
+1.Activity Action:
+	a.Sp change for displaying different colour for mandatory document not entered in grid.
+	b.Added summary Grid one more Column Violet Color Count and Total.
+2.ComapanyMaster:
+	a.Menu name change company master to Location Master.
+3.ActivityMaster:
+	a.Document not mandatory.so remove from code and db.
+3.Release:
+	i.Logo Changes in Master Page.
+	ii.Web config  change
+		a. <!--050313-->
+   			 <add key="Freq7" value="Fortnightly"/>
+  			 <add key="Freq8" value="Yearly"/>
+  		   <!--050313-->
+		b.<httpRuntime maxRequestLength="15360" requestLengthDiskThreshold="15360"/> 
+	iii.Ganinimailingservice - Weekly,Daily,Fortnightly added.
+Release:
+1.Sp Changes.
+	i.Admincheckoginsp -Changed for Isactive false employee's can not login again.
+	ii.MasActivityActionSelectsp - Changed for Blue count Corrections.
+	iii.ActivityActionAutoCreateWeekly
+	iv.ActivityActionAutoCreatesp
+2.Table:
+	i.tblActivityDocumentMaster - change DocumentName and AccessPath not null to null.
+==============================
+-- Date:25-02-13 version--1.01
+-- =============================================
+
+Release:
+1.Sp Changes.
+	i.Admincheckoginsp -Changed for Isactive false employee's can not login again.
+==============================
+-- Date:02-02-13 version--1.01
+-- =============================================
+
+Bugs:
+1.Comapny Master:
+	a.It can not update the Value.	
+
+
+
+
+
+

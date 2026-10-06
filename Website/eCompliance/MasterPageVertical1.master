@@ -1,0 +1,239 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPageVertical1.master.cs" Inherits="MasterPage1" %>
+
+<%@ Register Assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+    Namespace="System.Web.UI" TagPrefix="asp" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="Head1" runat="server">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>eCompliance</title>
+    <style type="text/css">
+        .style12
+        {
+            height: 141px;
+            width: 125px;
+            visibility: visible;
+        }
+        .style14
+        {
+            height: 80px;
+            top: auto;
+            width: 903px;
+        }
+        .style21
+        {
+            width: 112px;
+        }
+        .style23
+        {
+            width: 103px;
+        }
+        .style24
+        {
+            height: 141px;
+            width: 20px;
+        }
+        .style27
+        {
+            width: 1125px;
+        }
+        .style28
+        {
+            width: 81px;
+        }
+    </style>
+    <script type="text/javascript" language="javascript">
+        function DisableBackButton() {
+            window.history.forward()
+           
+        }
+        DisableBackButton();
+        window.onload = DisableBackButton;
+        window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
+        window.onunload = function () { void (0) }
+ </script>
+
+</head>
+<body id="body1" runat="server" oncontextmenu="return false" >
+     
+    <%--style="background: url(Images/LogoMasters.jpg) no-repeat; height: 606px; margin-top: 0px;">--%>
+    <form id="form1" runat="server">
+       <div class="wrap">
+       <div>
+             <%-- <div style="height:125px;width:1196px" />--%>
+            <asp:Panel ID="Panel2" runat="server" Height="48px" Font="Arial" 
+                 Font-Size="Large" BorderStyle ="Ridge" Width="1219px">
+        <table style="width: 1210px; height: 95%;" >
+            <tr><td></td>
+                <td>
+                    <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/Ganinilogo.jpg" 
+                        Width="62px" align="Right" Height="40px" style="margin-left: 0px" />
+                </td>
+            
+                <td class="style27" align = "center" style = "text-decoration:underline"> 
+                           <asp:Label ID="lblHeading" runat="server" Height="25px" 
+                        Text="eCompliance" Font-Size = "Large" Font-Italic="true"
+                                Width="394px" ForeColor="Navy"  />   
+                </td>                    
+                <td>
+                    <asp:Image ID="Image2" runat="server" ImageUrl="~/Images/Capri.jpg" 
+                        Width="60px" align="Right" Height="40px" style="margin-left: 0px" />
+                </td><td></td>
+            </tr>
+        </table>
+    </asp:Panel>
+      </div>
+       <asp:Panel ID="Panel1" runat="server" Style="z-index: 100; left: 1100px;
+            position: absolute; top: 37px; height: 33px; width: 60px;">
+        <asp:LinkButton id="lnkLogOut" runat="server" onclick="lnkLogOut_Click">Logout</asp:LinkButton>
+      </asp:Panel>
+   
+       <asp:Panel ID="DivLoginDetails" runat="server" Style="z-index: 100; left: 290px;
+            position: absolute; top: 77px; height: 25px; width: 973px;">
+          <asp:panel ID = "pnlSeparator" runat = "server" align = "center"  Height="27px" 
+               Width = "988px">
+         <table align="left" style="width: 954px; height: 98%">
+             <tr>
+                 <td ><asp:SiteMapPath ID="SiteMapPath" runat="server" Font-Size= "X-Small" PathSeparator=" &gt; " Font-Bold="True" Font-Names="arial" >
+                </asp:SiteMapPath>
+           </td>
+                 <td class="style23">
+                 <asp:Label ID="lbluname" runat="server" ForeColor="#333399"  Width="113px" Height="16px"
+                     Font-Size="X-Small" Font-Bold="True" 
+                     Font-Names="arial" style="text-align:right"></asp:Label>
+             </td>
+                 <td class="style21">
+                 <asp:Label ID="lblDate" runat="server" ForeColor="#333399" 
+                     style="margin-left: 0px; text-align: right;" Width="114px" Height="16px" 
+                     Font-Size="X-Small" Font-Bold="True" Font-Names="arial"  ></asp:Label>
+              </td><%--</tr> <tr>--%>
+                 <td class="style28" >
+                     <asp:Label ID="lblVersionName" runat="server" ForeColor="#333399"  Width="59px" 
+                     Font-Size="X-Small" style="text-align: right; margin-left: 19px;" 
+                         Font-Bold="True" Text="Version: "
+                     Font-Names="arial" Height="20px"></asp:Label>
+                </td>
+                 <td  class="style23">
+                        <asp:Label ID="lblVersionNumber" runat="server" ForeColor="#333399"  Width="93px" 
+                     Font-Size="X-Small" style="text-align:left" Font-Bold="True" 
+                     Font-Names="arial" Height="20px"></asp:Label>
+                     </td>
+                     <td  class="style23">
+                        <asp:Label ID="Label1" runat="server" ForeColor="#333399"  Width="109px" 
+                     Font-Size="X-Small" style="text-align:left" Font-Bold="True" Text ="Back button Disabled"
+                     Font-Names="arial" Height="20px"></asp:Label>
+                     </td>
+                     
+            </tr>
+      </table>
+                
+      </asp:panel>
+       </asp:Panel>
+                  
+       <div>
+        <table width="100%" style="height: 705px; margin-top: 0px;"cellspacing="10px" >
+            <tr>
+               <td id="td1" 
+                   style="border-style: groove; border-color: #3333CC; vertical-align: top; border-collapse: separate; border-right-width: medium; border-bottom-width: medium; border-left-width: medium;"
+                    class="style12" runat="server" >                
+                    <%--<asp:Panel ID="pnlAct" runat="server" Height="52px" Width="228px" Visible="false">
+                        <table>
+                            <tr>
+                                <td>
+                                     <asp:DropDownList ID="ddlActivity" runat="server" Height="20px" Width="219px" 
+                                        Font-Size="X-Small" DataTextField="ActName" DataValueField="ActId">
+                                    </asp:DropDownList>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center">
+                                    <asp:Button ID="btnGo" runat="server" Text="GO" 
+                            onclick="btnGo_Click" Font-Size="X-Small" />
+                                </td>
+                            </tr>
+                        </table>
+                   </asp:Panel>
+                    <br />--%>
+                   
+
+                    <asp:Panel ID="pnlTree" runat="server" Height="536px" Width="210px" 
+                       style="margin-top: 11px" >
+                        <asp:TreeView ID="TreeView2" runat="server" Font-Names="arial" 
+                            Font-Size="Large" ForeColor="Black" Height="168px" Width="135px" 
+                            ImageSet="Arrows"   onselectednodechanged="TreeView2_SelectedNodeChanged">
+                            <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
+                            <NodeStyle Font-Names="arial" Font-Size="8pt" ForeColor="Black" 
+                                HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px" />
+                            <ParentNodeStyle Font-Bold="False"  />
+                            <SelectedNodeStyle Font-Underline="True" ForeColor="#5555DD" 
+                                HorizontalPadding="0px" VerticalPadding="0px" />
+                            
+                        </asp:TreeView>
+                    </asp:Panel>
+                </td>
+                <td id="td2" class="style24" runat="server"  
+                    style="border: thin hidden #0000FF; vertical-align:top; border-collapse: separate;">  
+                 <div style="background-color: Transparent; height: 18px; width: 14px;">             
+                     
+                     <asp:ImageButton ID="imgExpand" runat="server" 
+                         ImageUrl="~/Images/colapse1.JPG" onclick="imgExpand_Click" 
+                         style="width: 16px" Height="16px" ImageAlign="Top" Width="10px" />
+                 </div>
+                </td>
+                
+                <td id="td3" class="style14" align="left" runat="server">
+                        <asp:ScriptManager ID="ScriptManager1" runat="server" />
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server" >
+                        <ContentTemplate>                 
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"  >
+                           <asp:Panel ID="Panel4" runat="server" Height="199px">
+                                 <table style="width: 886px">
+                                     <tr>
+                            <td align="center">
+                         
+                                <asp:Label ID="lblWelcome" runat="server" Text="Welcome to e-Compliance System."
+                                Font-Size="Larger" ForeColor="#3333CC" ></asp:Label>
+                           
+                        </td>
+                        </tr>
+                                 </table>
+                            </asp:Panel>
+                            
+<%--                            </asp:Panel>--%>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />            
+                        </asp:ContentPlaceHolder>
+                        </ContentTemplate>
+
+                        </asp:UpdatePanel>  
+                 </td>     
+                 </tr> 
+         </table>                                      
+     </div>
+ 
+    </div>
+       <br />
+   </form>
+</body>
+</html>
+
+

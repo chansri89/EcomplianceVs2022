@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="rptdst" targetNamespace="http://tempuri.org/rptdst.xsd" xmlns:mstns="http://tempuri.org/rptdst.xsd" xmlns="http://tempuri.org/rptdst.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="rptdst" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="rptdst" msprop:Generator_DataSetName="rptdst" msprop:EnableTableAdapterManager="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="RemainderForTask" msprop:Generator_UserTableName="RemainderForTask" msprop:Generator_RowDeletedName="RemainderForTaskRowDeleted" msprop:Generator_RowChangedName="RemainderForTaskRowChanged" msprop:Generator_RowClassName="RemainderForTaskRow" msprop:Generator_RowChangingName="RemainderForTaskRowChanging" msprop:Generator_RowEvArgName="RemainderForTaskRowChangeEvent" msprop:Generator_RowEvHandlerName="RemainderForTaskRowChangeEventHandler" msprop:Generator_TableClassName="RemainderForTaskDataTable" msprop:Generator_TableVarName="tableRemainderForTask" msprop:Generator_RowDeletingName="RemainderForTaskRowDeleting" msprop:Generator_TablePropName="RemainderForTask">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TaskID" msprop:Generator_UserColumnName="TaskID" msprop:Generator_ColumnVarNameInTable="columnTaskID" msprop:Generator_ColumnPropNameInRow="TaskID" msprop:Generator_ColumnPropNameInTable="TaskIDColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="CustomerName" msprop:Generator_UserColumnName="CustomerName" msprop:Generator_ColumnVarNameInTable="columnCustomerName" msprop:Generator_ColumnPropNameInRow="CustomerName" msprop:Generator_ColumnPropNameInTable="CustomerNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="CategoryName" msprop:Generator_UserColumnName="CategoryName" msprop:Generator_ColumnVarNameInTable="columnCategoryName" msprop:Generator_ColumnPropNameInRow="CategoryName" msprop:Generator_ColumnPropNameInTable="CategoryNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ModelName" msprop:Generator_UserColumnName="ModelName" msprop:Generator_ColumnVarNameInTable="columnModelName" msprop:Generator_ColumnPropNameInRow="ModelName" msprop:Generator_ColumnPropNameInTable="ModelNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="SourceName" msprop:Generator_UserColumnName="SourceName" msprop:Generator_ColumnVarNameInTable="columnSourceName" msprop:Generator_ColumnPropNameInRow="SourceName" msprop:Generator_ColumnPropNameInTable="SourceNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="EmailID" msprop:Generator_UserColumnName="EmailID" msprop:Generator_ColumnVarNameInTable="columnEmailID" msprop:Generator_ColumnPropNameInRow="EmailID" msprop:Generator_ColumnPropNameInTable="EmailIDColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ActionStartDate" msprop:Generator_UserColumnName="ActionStartDate" msprop:Generator_ColumnVarNameInTable="columnActionStartDate" msprop:Generator_ColumnPropNameInRow="ActionStartDate" msprop:Generator_ColumnPropNameInTable="ActionStartDateColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="TaskDescription" msprop:Generator_UserColumnName="TaskDescription" msprop:Generator_ColumnVarNameInTable="columnTaskDescription" msprop:Generator_ColumnPropNameInRow="TaskDescription" msprop:Generator_ColumnPropNameInTable="TaskDescriptionColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ActionId" msprop:Generator_UserColumnName="ActionId" msprop:Generator_ColumnVarNameInTable="columnActionId" msprop:Generator_ColumnPropNameInRow="ActionId" msprop:Generator_ColumnPropNameInTable="ActionIdColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="DepartmentName" msprop:Generator_UserColumnName="DepartmentName" msprop:Generator_ColumnVarNameInTable="columnDepartmentName" msprop:Generator_ColumnPropNameInRow="DepartmentName" msprop:Generator_ColumnPropNameInTable="DepartmentNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ActionRequested" msprop:Generator_UserColumnName="ActionRequested" msprop:Generator_ColumnVarNameInTable="columnActionRequested" msprop:Generator_ColumnPropNameInRow="ActionRequested" msprop:Generator_ColumnPropNameInTable="ActionRequestedColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ActionDescription" msprop:Generator_UserColumnName="ActionDescription" msprop:Generator_ColumnVarNameInTable="columnActionDescription" msprop:Generator_ColumnPropNameInRow="ActionDescription" msprop:Generator_ColumnPropNameInTable="ActionDescriptionColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="StatusName" msprop:Generator_UserColumnName="StatusName" msprop:Generator_ColumnVarNameInTable="columnStatusName" msprop:Generator_ColumnPropNameInRow="StatusName" msprop:Generator_ColumnPropNameInTable="StatusNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Date" msprop:Generator_UserColumnName="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TopManagement" msprop:Generator_UserTableName="TopManagement" msprop:Generator_RowDeletedName="TopManagementRowDeleted" msprop:Generator_TableClassName="TopManagementDataTable" msprop:Generator_RowChangedName="TopManagementRowChanged" msprop:Generator_RowClassName="TopManagementRow" msprop:Generator_RowChangingName="TopManagementRowChanging" msprop:Generator_RowEvArgName="TopManagementRowChangeEvent" msprop:Generator_RowEvHandlerName="TopManagementRowChangeEventHandler" msprop:Generator_TablePropName="TopManagement" msprop:Generator_TableVarName="tableTopManagement" msprop:Generator_RowDeletingName="TopManagementRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DepartmentCode" msprop:Generator_UserColumnName="DepartmentCode" msprop:Generator_ColumnPropNameInRow="DepartmentCode" msprop:Generator_ColumnVarNameInTable="columnDepartmentCode" msprop:Generator_ColumnPropNameInTable="DepartmentCodeColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="DepartmentName" msprop:Generator_UserColumnName="DepartmentName" msprop:Generator_ColumnPropNameInRow="DepartmentName" msprop:Generator_ColumnVarNameInTable="columnDepartmentName" msprop:Generator_ColumnPropNameInTable="DepartmentNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="POPBAL" msprop:Generator_UserColumnName="POPBAL" msprop:Generator_ColumnPropNameInRow="POPBAL" msprop:Generator_ColumnVarNameInTable="columnPOPBAL" msprop:Generator_ColumnPropNameInTable="POPBALColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="CACTION" msprop:Generator_UserColumnName="CACTION" msprop:Generator_ColumnPropNameInRow="CACTION" msprop:Generator_ColumnVarNameInTable="columnCACTION" msprop:Generator_ColumnPropNameInTable="CACTIONColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="PCLOSED" msprop:Generator_UserColumnName="PCLOSED" msprop:Generator_ColumnPropNameInRow="PCLOSED" msprop:Generator_ColumnVarNameInTable="columnPCLOSED" msprop:Generator_ColumnPropNameInTable="PCLOSEDColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="CCLOSED" msprop:Generator_UserColumnName="CCLOSED" msprop:Generator_ColumnPropNameInRow="CCLOSED" msprop:Generator_ColumnVarNameInTable="columnCCLOSED" msprop:Generator_ColumnPropNameInTable="CCLOSEDColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="PDUE" msprop:Generator_UserColumnName="PDUE" msprop:Generator_ColumnPropNameInRow="PDUE" msprop:Generator_ColumnVarNameInTable="columnPDUE" msprop:Generator_ColumnPropNameInTable="PDUEColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="CDUE" msprop:Generator_UserColumnName="CDUE" msprop:Generator_ColumnPropNameInRow="CDUE" msprop:Generator_ColumnVarNameInTable="columnCDUE" msprop:Generator_ColumnPropNameInTable="CDUEColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

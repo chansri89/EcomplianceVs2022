@@ -1,0 +1,18 @@
+﻿Spec for consideration in ECompliance
+
+1. Multiple Document Attachment for Action
+2. Auto Program for Calling Web Server to Update Acts
+3. Penal Provisions
+4. Change of Password Policy enforcement
+5. XL Upload for 
+	** EmpLoyee , Company, Department Group persons Masters
+	** Activity for New activity or change in frequency
+6. ActDetail to have 
+   ** Effective and End Date(Null for running acts )
+   ** Responsible person ( may be depatment and designation)
+7. Frequency master to have once in 2 Months and once in so many year specify
+	** Auto email to accomadate the above
+	** 
+Bugs to be rectified
+1. Activity Action Grid select will fail for dates < 3 yrs of current date ( Pyear, Cyear Future year)
+2. 

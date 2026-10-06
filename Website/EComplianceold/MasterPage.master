@@ -1,0 +1,100 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs"
+    Inherits="MasterPage" %>
+
+<%@ Register Assembly="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+    Namespace="System.Web.UI" TagPrefix="asp" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head id="Head1" runat="server">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>ECompliance</title>
+    <style type="text/css">
+        .style12
+        {
+            height: 489px;
+            width: 208px;
+            visibility: visible;
+        }
+        .style14
+        {
+            height: 489px;
+        }
+        .style15
+        {
+            width: 100%;
+        }
+    </style>
+</head>
+<body oncontextmenu="return false" 
+    style="background: url(Images/MasterPage.JPG) no-repeat; height: 729px;">
+    <form id="form1" runat="server">
+    <div class="wrap">
+    <%-- <asp:ScriptManager ID="ScriptManager2" runat="server" />--%>
+                   <%-- <div class="Login_body">
+                        <div class="leftLogin">
+                            <div class="cont">
+                                <div style="height: 186px; margin-top: 0px;">
+									<div style="background-color:#265196;height: 41px;width: 161px;float: left;position: absolute;top: 156px; left: -1px;"></div>
+                                    <div>
+                                        <img src="Images/logo.jpg" alt="" 
+                                            style="margin-left: 150px; height: 154px; margin-top: 28px; width: 413px;"></div>
+									<div style="background-color: #183674;height: 41px;width: 696px; float: left;position: absolute;left: 570px; top: 106px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+      </div>
+    <div>--%>
+    <div style="width: 1195px">
+    
+        <asp:Image ID="Image1" runat="server" ImageUrl="~/Images/LoginImage.jpg" 
+            Width="1178px" />
+    
+    </div>
+        <table width="100%" style="height: 496px; margin-top: 0px;"cellspacing="10px" >
+            <tr>
+              
+                <td id="td3" class="style14" align="left" runat="server">
+                    <div style="background-color: Transparent">  
+                    <asp:ScriptManager ID="ScriptManager1" runat="server" />
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server" >
+                        <ContentTemplate>                 
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"  >
+                        &nbsp;<br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <br />            
+                        </asp:ContentPlaceHolder>
+                        </ContentTemplate>
+                        </asp:UpdatePanel>                                              
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <br />
+    </form>
+</body>
+</html>

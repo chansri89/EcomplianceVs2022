@@ -1,0 +1,41 @@
+﻿body {
+}
+
+
+.txtbox
+{
+    font-size:xx-small;
+    font-family:Verdana;
+    text-align:center;
+}
+.txtbox:hover
+{
+    background-color:White;
+    color:Red;
+    text-decoration:underline;
+   
+}
+.lbl
+{
+    text-indent:bold;
+    height:16px;
+    width:100px;
+    font-size:xx-small;
+    font-family:Verdana;
+    text-align:center;   
+}
+.ddl
+{
+     height:16px;
+     width:100px;
+     font-size:xx-small;
+     font-family:Verdana;
+     text-align:left;   
+}
+.btnsave
+{
+    font-family: Verdana;
+    font-size: xx-small;
+    height: 18px;
+    text-align: center;
+    }
